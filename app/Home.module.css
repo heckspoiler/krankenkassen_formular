@@ -1,0 +1,8 @@
+.Main {
+    min-height: 100svh;
+    min-width: 100svw;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

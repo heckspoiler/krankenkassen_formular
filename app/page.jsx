@@ -1,8 +1,9 @@
 import { Form } from './components/form';
+import styles from './Home.module.css';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className={styles.Main}>
       <Form />
     </main>
   );
