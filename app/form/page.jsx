@@ -1,4 +1,4 @@
-import { FormComponent } from '../components/FormComponent';
+import { FormComponent } from '../components/FormComponent/FormComponent';
 import supabase from '../../utils/supabase';
 import styles from './Form.module.css';
 
