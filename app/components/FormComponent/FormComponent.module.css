@@ -4,10 +4,62 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 2vw 5vw;
+}
+
+.LowerContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 4vw;
+    justify-content: space-between;
+    align-self: flex-end;
 }
 
 .Title {
-    font-size: 4rem;
+    font-size: 2rem;
     text-transform: uppercase;
     padding-bottom: 5vh;
+    font-weight: bold;
+}
+
+.AdvanceButton {
+    background-color: var(--background-grey);
+    padding: 0.8vw 1.6vw;
+    background-color: rgb(232, 232, 232);
+    transition: scale 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.AdvanceButton:hover {
+    scale: 1.02;
+    background-color: var(--lightblue);
+}
+
+.IndicatorContainer {
+
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.Indicator {
+    height: 0.5vw;
+    width: 0.5vw;
+    background-color: rgb(203, 203, 203);
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.Disabled {
+    background-color: rgb(231, 231, 231);
+    color: var(--background-grey);
+    scale: 1;
+    pointer-events: none;
+}
+
+.Active {
+    transform: scale(1.05);
+    background-color: var(--font-black);
 }

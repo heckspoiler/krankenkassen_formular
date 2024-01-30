@@ -1,1 +1,37 @@
-.Main {}
+.Main {
+    height: fit-content;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 2vw;
+    column-gap: 2vw;
+    padding: 1vw;
+
+}
+
+.Button {
+
+    padding: 0.8vw 0.8vw;
+    height: 3.6vw;
+    width: 3.6vw;
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    background-color: var(--background-grey);
+    outline: none;
+    font-size: calc(0.4em + 0.4vw);
+    border-radius: 50%;
+}
+
+.Button:hover {
+    scale: 1.04;
+    background-color: var(--lightblue);
+}
+
+.Button:active {
+    scale: 1;
+    background-color: white;
+}
+
+.Active {
+    scale: 1;
+    background-color: var(--blue);
+}

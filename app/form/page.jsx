@@ -10,23 +10,32 @@ import { datasetStore } from '@/utils/stores/datasetStore';
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
+  const canton = selectedCanton.canton;
   const dataset = useStore(datasetStore);
+  const setDataset = useStore(datasetStore).setDataset;
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const { dataset, error } = await supabase.from('praemien').select();
+        const response = await supabase
+          .from('praemien')
+          .select(
+            'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise'
+          )
+          .eq('kanton', canton);
 
-        if (error) throw error;
+        if (response.error) throw response.error;
+
+        setDataset(response.data);
+        console.log(canton);
+        console.log('Data fetched from Supabase: ', response.data);
       } catch (error) {
         console.error('Error fetching data from Supabase: ', error);
       }
     }
 
-    if (selectedCanton !== '') {
-      fetchData();
-    }
-  }, [selectedCanton]);
+    fetchData();
+  }, [canton, setDataset]);
 
   return (
     <main className={styles.Main}>
