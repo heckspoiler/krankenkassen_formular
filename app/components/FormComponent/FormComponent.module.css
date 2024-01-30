@@ -1,0 +1,13 @@
+.Main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Title {
+    font-size: 4rem;
+    text-transform: uppercase;
+    padding-bottom: 5vh;
+}
