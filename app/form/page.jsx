@@ -7,12 +7,14 @@ import styles from './Form.module.css';
 import { useStore } from 'zustand';
 import { cantonStore } from '@/utils/stores/cantonStore';
 import { datasetStore } from '@/utils/stores/datasetStore';
+import { ageStore } from '@/utils/stores/ageStore';
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
   const canton = selectedCanton.canton;
   const dataset = useStore(datasetStore);
   const setDataset = useStore(datasetStore).setDataset;
+  const selectedAge = useStore(ageStore).age;
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +24,8 @@ export default function Form() {
           .select(
             'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise'
           )
-          .eq('kanton', canton);
+          .eq('kanton', canton)
+          .eq('altersklasse', selectedAge);
 
         if (response.error) throw response.error;
 

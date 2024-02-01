@@ -5,8 +5,6 @@
     justify-content: center;
     flex-direction: column;
     padding: 2vw;
-
-
 }
 
 .Multistep {
@@ -21,6 +19,7 @@
     width: 120vw;
     transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
     transition-delay: 0.3s;
+    height: 60vh;
 }
 
 .LowerContainer {
@@ -32,12 +31,6 @@
     align-self: flex-end;
 }
 
-.Title {
-    font-size: 2rem;
-    text-transform: uppercase;
-    padding-bottom: 5vh;
-    font-weight: bold;
-}
 
 .AdvanceButton {
     background-color: var(--background-grey);

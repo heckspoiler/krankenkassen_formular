@@ -16,12 +16,10 @@ export const Age = ({ isActive }) => {
 
   const handleAgeClick = (code) => {
     setAge(code);
-    console.log(dataset);
   };
 
   return (
     <div name="age" id="ageSelect" className={styles.Main}>
-      <h2>Altersklasse</h2>
       <div className={styles.AgeContainer}>
         {ageValues.map((ageValue) => (
           <button

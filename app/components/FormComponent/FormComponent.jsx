@@ -9,6 +9,7 @@ import { cantonStore } from '@/utils/stores/cantonStore';
 export const FormComponent = () => {
   const selectedCanton = useStore(cantonStore).canton;
   const [isActive, setIsActive] = useState(0);
+  const [title, setTitle] = useState('Wohnkanton');
 
   const handleNext = () => {
     setIsActive((current) => (current < 3 ? current + 1 : current));
@@ -34,17 +35,22 @@ export const FormComponent = () => {
 
     if (isActive === 0) {
       slider.style.transform = 'translateX(0)';
+      setTitle('Wohnkanton');
     } else if (isActive === 1) {
       slider.style.transform = 'translateX(-30vw)';
+      setTitle('Alterskategorie');
     } else if (isActive === 2) {
       slider.style.transform = 'translateX(-60vw)';
+      setTitle('Unfalldeckung');
     } else if (isActive === 3) {
       slider.style.transform = 'translateX(-90vw)';
+      setTitle('Franchise');
     }
   });
 
   return (
     <div className={styles.Main}>
+      <h2 className={styles.title}>{title}</h2>
       <div className={styles.Multistep}>
         <div className={styles.MultistepSlider}>
           <Canton isActive={isActive} />
