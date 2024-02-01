@@ -42,11 +42,7 @@ export const Canton = ({ isActive }) => {
   ];
 
   return (
-    <div
-      name="canton"
-      id="cantonSelect"
-      className={`${styles.Main} ${isActive > 0 ? styles.MainHidden : ''}`}
-    >
+    <div name="canton" id="cantonSelect" className={styles.Main}>
       <h2>Wohnkanton</h2>
       <div className={styles.cantonContainer}>
         {cantons.map((cantonCode) => (

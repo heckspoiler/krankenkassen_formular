@@ -1,13 +1,11 @@
 .Main {
-    height: fit-content;
-    width: fit-content;
-    padding: 1vw;
+    height: 75vh;
+    width: 30vw;
     transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
     transition-delay: 0.3s;
-}
+    display: flex;
+    flex-direction: column;
 
-.MainHidden {
-    transform: translateX(-50vw);
 }
 
 .cantonContainer {
@@ -15,6 +13,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 2vw;
     column-gap: 2vw;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+    padding: 0 2vw;
 }
 
 .Button {
@@ -41,5 +43,5 @@
 
 .Active {
     scale: 1;
-    background-color: var(--blue);
+    background-color: var(--lightblue);
 }

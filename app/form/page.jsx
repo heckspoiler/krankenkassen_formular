@@ -27,8 +27,6 @@ export default function Form() {
         if (response.error) throw response.error;
 
         setDataset(response.data);
-        console.log(canton);
-        console.log('Data fetched from Supabase: ', response.data);
       } catch (error) {
         console.error('Error fetching data from Supabase: ', error);
       }

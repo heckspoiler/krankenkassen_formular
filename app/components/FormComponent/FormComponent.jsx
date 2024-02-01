@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import styles from './FormComponent.module.css';
 import { Canton } from './Canton/Canton';
+import { Age } from '../AgeComponent/Age';
 import { useStore } from 'zustand';
 import { cantonStore } from '@/utils/stores/cantonStore';
 
@@ -28,10 +29,27 @@ export const FormComponent = () => {
     });
   }, [isActive]);
 
+  useEffect(() => {
+    const slider = document.querySelector(`.${styles.MultistepSlider}`);
+
+    if (isActive === 0) {
+      slider.style.transform = 'translateX(0)';
+    } else if (isActive === 1) {
+      slider.style.transform = 'translateX(-30vw)';
+    } else if (isActive === 2) {
+      slider.style.transform = 'translateX(-60vw)';
+    } else if (isActive === 3) {
+      slider.style.transform = 'translateX(-90vw)';
+    }
+  });
+
   return (
     <div className={styles.Main}>
       <div className={styles.Multistep}>
-        <Canton isActive={isActive} />
+        <div className={styles.MultistepSlider}>
+          <Canton isActive={isActive} />
+          <Age isActive={isActive} />
+        </div>
       </div>
       <div className={styles.LowerContainer}>
         <button
