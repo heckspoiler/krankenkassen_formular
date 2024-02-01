@@ -4,7 +4,7 @@ import { useStore } from 'zustand';
 import { ageStore } from '@/utils/stores/ageStore';
 import { datasetStore } from '@/utils/stores/datasetStore';
 
-export const Age = ({ isActive }) => {
+export const Age = () => {
   const { age, setAge } = useStore(ageStore);
   const [dataset, setDataset] = useStore(datasetStore).dataset;
 
@@ -20,6 +20,7 @@ export const Age = ({ isActive }) => {
 
   return (
     <div name="age" id="ageSelect" className={styles.Main}>
+      <h3>Bitte wählen Sie ihre Alterskategorie</h3>
       <div className={styles.AgeContainer}>
         {ageValues.map((ageValue) => (
           <button

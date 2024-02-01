@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import styles from './FormComponent.module.css';
 import { Canton } from './Canton/Canton';
-import { Age } from '../AgeComponent/Age';
+import { Age } from './AgeComponent/Age';
+import { Franchise } from './FranchiseComponent/Franchise';
 import { useStore } from 'zustand';
 import { cantonStore } from '@/utils/stores/cantonStore';
 
@@ -41,10 +42,10 @@ export const FormComponent = () => {
       setTitle('Alterskategorie');
     } else if (isActive === 2) {
       slider.style.transform = 'translateX(-60vw)';
-      setTitle('Unfalldeckung');
+      setTitle('Franchisehöhe');
     } else if (isActive === 3) {
       slider.style.transform = 'translateX(-90vw)';
-      setTitle('Franchise');
+      setTitle('Unfallversicherung');
     }
   });
 
@@ -55,6 +56,7 @@ export const FormComponent = () => {
         <div className={styles.MultistepSlider}>
           <Canton isActive={isActive} />
           <Age isActive={isActive} />
+          <Franchise isActive={isActive} />
         </div>
       </div>
       <div className={styles.LowerContainer}>

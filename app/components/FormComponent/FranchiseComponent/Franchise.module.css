@@ -1,35 +1,30 @@
 .Main {
+    padding: 1vw;
+    height: 100%;
     width: 30vw;
-    transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
-    transition-delay: 0.3s;
     display: flex;
     flex-direction: column;
-    height: 100%;
     align-items: center;
     justify-content: center;
+    gap: 3vw;
 }
 
-.cantonContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 2vw;
-    column-gap: 2vw;
-    align-items: center;
-    justify-content: center;
+.FranchiseContainer {
     width: 30vw;
-    padding: 0 2vw;
-
+    height: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .Button {
-
-    padding: 0.8vw 0.8vw;
-    height: 3.6vw;
-    width: 3.6vw;
+    padding: 1.2vw 2.8vw;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
-    font-size: calc(0.4em + 0.6vw);
+    font-size: calc(0.5em + 0.5vw);
 }
 
 .Button:hover {

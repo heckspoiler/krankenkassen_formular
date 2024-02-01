@@ -1,5 +1,4 @@
 .Main {
-    border: 1px solid var(--background-grey-darker);
     position: relative;
     width: fit-content;
 }
