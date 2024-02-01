@@ -4,13 +4,14 @@ import styles from './FormComponent.module.css';
 import { Canton } from './Canton/Canton';
 import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
+import { Accident } from './accidentComponent/Accident';
 import { useStore } from 'zustand';
 import { cantonStore } from '@/utils/stores/cantonStore';
 
 export const FormComponent = () => {
-  const selectedCanton = useStore(cantonStore).canton;
   const [isActive, setIsActive] = useState(0);
   const [title, setTitle] = useState('Wohnkanton');
+  const [buttonText, setButtonText] = useState('Weiter');
 
   const handleNext = () => {
     setIsActive((current) => (current < 3 ? current + 1 : current));
@@ -49,6 +50,17 @@ export const FormComponent = () => {
     }
   });
 
+  useEffect(() => {
+    const advanceButton = document.getElementById('advancebutton');
+    const backButton = document.getElementById('backbutton');
+
+    if (isActive === 3) {
+      setButtonText('Auswerten');
+    } else {
+      setButtonText('Weiter');
+    }
+  }, [isActive]);
+
   return (
     <div className={styles.Main}>
       <h2 className={styles.title}>{title}</h2>
@@ -57,6 +69,7 @@ export const FormComponent = () => {
           <Canton isActive={isActive} />
           <Age isActive={isActive} />
           <Franchise isActive={isActive} />
+          <Accident isActive={isActive} />
         </div>
       </div>
       <div className={styles.LowerContainer}>
@@ -67,19 +80,20 @@ export const FormComponent = () => {
         >
           Zurück
         </button>
-        <div className={styles.IndicatorContainer}>
-          <div className={styles.Indicator}></div>
-          <div className={styles.Indicator}></div>
-          <div className={styles.Indicator}></div>
-          <div className={styles.Indicator}></div>
-        </div>
+
         <button
           onClick={handleNext}
           className={styles.AdvanceButton}
           id="advancebutton"
         >
-          Weiter
+          {buttonText}
         </button>
+      </div>
+      <div className={styles.IndicatorContainer}>
+        <div className={styles.Indicator}></div>
+        <div className={styles.Indicator}></div>
+        <div className={styles.Indicator}></div>
+        <div className={styles.Indicator}></div>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@
     background-color: var(--background-grey);
     padding: 0.8vw 1.6vw;
     background-color: rgb(232, 232, 232);
-    transition: scale 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: scale 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out, width 0.2s ease-in;
 }
 
 .AdvanceButton:hover {
@@ -53,6 +53,7 @@
     align-items: center;
     justify-content: center;
     gap: 1vw;
+    padding-top: 2vh;
 }
 
 .Indicator {

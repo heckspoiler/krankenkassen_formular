@@ -9,6 +9,7 @@ import { cantonStore } from '@/utils/stores/cantonStore';
 import { datasetStore } from '@/utils/stores/datasetStore';
 import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
+import { accidentStore } from '@/utils/stores/accidentStore';
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
@@ -17,6 +18,7 @@ export default function Form() {
   const setDataset = useStore(datasetStore).setDataset;
   const selectedAge = useStore(ageStore).age;
   const selectedFranchise = useStore(franchiseStore).franchise;
+  const selectedAccident = useStore(accidentStore).accident;
 
   useEffect(() => {
     async function fetchData() {
@@ -28,7 +30,8 @@ export default function Form() {
           )
           .eq('kanton', canton)
           .eq('altersklasse', selectedAge)
-          .eq('franchise', selectedFranchise);
+          .eq('franchise', selectedFranchise)
+          .eq('unfall', selectedAccident);
 
         if (response.error) throw response.error;
 
