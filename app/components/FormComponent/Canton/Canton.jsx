@@ -5,7 +5,7 @@ import styles from './Canton.module.css';
 import { useStore } from 'zustand';
 import { cantonStore } from '../../../../utils/stores/cantonStore';
 
-export const Canton = () => {
+export const Canton = ({ isActive }) => {
   const { canton, setCanton } = useStore(cantonStore);
 
   const handleCantonClick = (e) => {
@@ -42,17 +42,24 @@ export const Canton = () => {
   ];
 
   return (
-    <div name="canton" id="cantonSelect" className={styles.Main}>
-      {cantons.map((cantonCode) => (
-        <button
-          key={cantonCode}
-          onClick={handleCantonClick}
-          value={cantonCode}
-          className={`${styles.Button} ${canton === cantonCode ? styles.Active : ''}`}
-        >
-          {cantonCode}
-        </button>
-      ))}
+    <div
+      name="canton"
+      id="cantonSelect"
+      className={`${styles.Main} ${isActive > 0 ? styles.MainHidden : ''}`}
+    >
+      <h2>Wohnkanton</h2>
+      <div className={styles.cantonContainer}>
+        {cantons.map((cantonCode) => (
+          <button
+            key={cantonCode}
+            onClick={handleCantonClick}
+            value={cantonCode}
+            className={`${styles.Button} ${canton === cantonCode ? styles.Active : ''}`}
+          >
+            {cantonCode}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

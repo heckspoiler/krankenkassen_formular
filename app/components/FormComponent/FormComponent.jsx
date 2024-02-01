@@ -11,12 +11,10 @@ export const FormComponent = () => {
 
   const handleNext = () => {
     setIsActive((current) => (current < 3 ? current + 1 : current));
-    console.log(isActive);
   };
 
   const handleBack = () => {
     setIsActive((current) => (current > 0 ? current - 1 : current));
-    console.log(isActive);
   };
 
   useEffect(() => {
@@ -33,7 +31,7 @@ export const FormComponent = () => {
   return (
     <div className={styles.Main}>
       <div className={styles.Multistep}>
-        <Canton />
+        <Canton isActive={isActive} />
       </div>
       <div className={styles.LowerContainer}>
         <button

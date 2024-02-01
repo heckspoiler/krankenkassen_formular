@@ -11,6 +11,13 @@
   --green: #CCF381;
 }
 
+h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 4vh;
+}
+
 * {
   color: var(--font-black)
 }
