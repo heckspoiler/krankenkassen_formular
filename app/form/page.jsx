@@ -10,6 +10,7 @@ import { datasetStore } from '@/utils/stores/datasetStore';
 import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
+import { fetchStore } from '@/utils/stores/fetchStore';
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
@@ -19,30 +20,34 @@ export default function Form() {
   const selectedAge = useStore(ageStore).age;
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
+  const isFetching = useStore(fetchStore).fetch;
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await supabase
-          .from('praemien')
-          .select(
-            'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise'
-          )
-          .eq('kanton', canton)
-          .eq('altersklasse', selectedAge)
-          .eq('franchise', selectedFranchise)
-          .eq('unfall', selectedAccident);
+    if (isFetching) {
+      async function fetchData() {
+        try {
+          const response = await supabase
+            .from('praemien')
+            .select(
+              'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
+            )
+            .eq('kanton', canton)
+            .eq('altersklasse', selectedAge)
+            .eq('franchise', selectedFranchise)
+            .eq('unfall', selectedAccident);
 
-        if (response.error) throw response.error;
+          if (response.error) throw response.error;
 
-        setDataset(response.data);
-      } catch (error) {
-        console.error('Error fetching data from Supabase: ', error);
+          setDataset(response.data);
+          console.log('Data fetched from Supabase: ', response.data);
+        } catch (error) {
+          console.error('Error fetching data from Supabase: ', error);
+        }
       }
+      console.log('fetching data');
+      fetchData();
     }
-
-    fetchData();
-  }, [canton, setDataset]);
+  }, [isFetching]);
 
   return (
     <main className={styles.Main}>

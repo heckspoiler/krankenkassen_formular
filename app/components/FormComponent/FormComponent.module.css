@@ -48,12 +48,12 @@
 
 .IndicatorContainer {
 
-    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1vw;
-    padding-top: 2vh;
+    padding-top: 3vh;
+    width: 100%;
 }
 
 .Indicator {

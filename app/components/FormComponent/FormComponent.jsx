@@ -6,15 +6,20 @@ import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
 import { Accident } from './accidentComponent/Accident';
 import { useStore } from 'zustand';
-import { cantonStore } from '@/utils/stores/cantonStore';
+import { fetchStore } from '@/utils/stores/fetchStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
   const [title, setTitle] = useState('Wohnkanton');
   const [buttonText, setButtonText] = useState('Weiter');
+  const setFetch = useStore(fetchStore).setFetch;
+  const fetch = useStore(fetchStore).fetch;
 
   const handleNext = () => {
     setIsActive((current) => (current < 3 ? current + 1 : current));
+    isActive === 3 ? setFetch(true) : setFetch(false);
+    console.log(fetch);
+    console.log(isActive);
   };
 
   const handleBack = () => {
@@ -34,7 +39,6 @@ export const FormComponent = () => {
 
   useEffect(() => {
     const slider = document.querySelector(`.${styles.MultistepSlider}`);
-
     if (isActive === 0) {
       slider.style.transform = 'translateX(0)';
       setTitle('Wohnkanton');
@@ -51,9 +55,6 @@ export const FormComponent = () => {
   });
 
   useEffect(() => {
-    const advanceButton = document.getElementById('advancebutton');
-    const backButton = document.getElementById('backbutton');
-
     if (isActive === 3) {
       setButtonText('Auswerten');
     } else {
