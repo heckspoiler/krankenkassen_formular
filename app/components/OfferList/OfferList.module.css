@@ -1,0 +1,45 @@
+.Main {
+    width: 30vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.OfferList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+}
+
+.Offer {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2vw 2vw;
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    background-color: var(--background-grey);
+    outline: none;
+    font-size: calc(0.5em + 0.5vw);
+}
+
+.OfferTitle {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.Offer:hover {
+    scale: 1.04;
+    background-color: var(--lightblue);
+    cursor: pointer;
+}
+
+.Offer:active {
+    scale: 1;
+    background-color: white;
+}

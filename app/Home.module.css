@@ -3,7 +3,9 @@
     min-width: 100svw;
     background-color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: space-evenly;
     color: var(--font-black);
+    padding-top: 8vh;
+
 }

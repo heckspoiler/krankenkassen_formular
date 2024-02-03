@@ -1,10 +1,10 @@
 .Main {
-    position: relative;
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
+    top: 10;
 }
 
 
