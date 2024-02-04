@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className={styles.Main}>
       <Form />
-      <OfferList />
+      {/* <OfferList /> */}
     </main>
   );
 }

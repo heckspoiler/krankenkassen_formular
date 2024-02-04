@@ -6,14 +6,15 @@
     flex-direction: column;
     height: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+
 }
 
 .cantonContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 2vw;
-    column-gap: 2vw;
+    row-gap: 1.5vw;
+    column-gap: 1.5vw;
     align-items: center;
     justify-content: center;
     width: 30vw;
@@ -24,8 +25,8 @@
 .Button {
 
     padding: 0.8vw 0.8vw;
-    height: 3.6vw;
-    width: 3.6vw;
+    height: 3.2vw;
+    width: 3.2vw;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;

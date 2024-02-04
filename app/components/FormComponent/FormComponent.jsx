@@ -1,10 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './FormComponent.module.css';
 import { Canton } from './Canton/Canton';
 import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
 import { Accident } from './accidentComponent/Accident';
+import { OfferList } from '../OfferList/OfferList';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
 
@@ -14,16 +15,18 @@ export const FormComponent = () => {
   const [buttonText, setButtonText] = useState('Weiter');
   const setFetch = useStore(fetchStore).setFetch;
   const fetch = useStore(fetchStore).fetch;
+  const topOfForm = useRef(null);
 
   const handleNext = () => {
-    setIsActive((current) => (current < 3 ? current + 1 : current));
+    setIsActive((current) => (current < 4 ? current + 1 : current));
     isActive === 3 ? setFetch(true) : setFetch(false);
-    console.log(fetch);
-    console.log(isActive);
   };
 
   const handleBack = () => {
     setIsActive((current) => (current > 0 ? current - 1 : current));
+    if (isActive === 4) {
+      topOfForm.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -51,6 +54,9 @@ export const FormComponent = () => {
     } else if (isActive === 3) {
       slider.style.transform = 'translateX(-90vw)';
       setTitle('Unfallversicherung');
+    } else if (isActive === 4) {
+      slider.style.transform = 'translateX(-120vw)';
+      setTitle('Angebote');
     }
   });
 
@@ -66,11 +72,14 @@ export const FormComponent = () => {
     <div className={styles.Main}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.Multistep}>
-        <div className={styles.MultistepSlider}>
+        <div className={styles.MultistepSlider} ref={topOfForm}>
           <Canton isActive={isActive} />
           <Age isActive={isActive} />
           <Franchise isActive={isActive} />
           <Accident isActive={isActive} />
+          <div className={styles.OffersContainer}>
+            <OfferList isActive={isActive} />
+          </div>
         </div>
       </div>
       <div className={styles.LowerContainer}>
@@ -84,13 +93,14 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={styles.AdvanceButton}
+          className={`${styles.AdvanceButton} ${isActive === 4 ? styles.NotVisible : ''}`}
           id="advancebutton"
         >
           {buttonText}
         </button>
       </div>
       <div className={styles.IndicatorContainer}>
+        <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>

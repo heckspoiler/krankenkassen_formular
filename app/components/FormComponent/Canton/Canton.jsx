@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './Canton.module.css';
 import { useStore } from 'zustand';
 import { cantonStore } from '../../../../utils/stores/cantonStore';
+import { CantonRadio } from './CantonRadio/CantonRadio';
 
 export const Canton = ({ isActive }) => {
   const { canton, setCanton } = useStore(cantonStore);
@@ -55,6 +56,7 @@ export const Canton = ({ isActive }) => {
           </button>
         ))}
       </div>
+      <CantonRadio isActive={isActive} />
     </div>
   );
 };

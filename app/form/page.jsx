@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { FormComponent } from '../components/FormComponent/FormComponent';
-import { OfferList } from '../components/OfferList/OfferList';
 import supabase from '../../utils/supabase';
 import styles from './Form.module.css';
 import { useStore } from 'zustand';
@@ -22,6 +21,7 @@ export default function Form() {
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
+  console.log('isFetching: ', isFetching);
 
   useEffect(() => {
     if (isFetching) {
