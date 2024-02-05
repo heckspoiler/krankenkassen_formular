@@ -6,7 +6,7 @@ import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
 import { Accident } from './accidentComponent/Accident';
 import { OfferList } from '../OfferList/OfferList';
-import ContactForm from '../ContactForm/ContactForm';
+import { AddMore } from './addMoreComponent/AddMore';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
 
@@ -19,15 +19,12 @@ export const FormComponent = () => {
   const topOfForm = useRef(null);
 
   const handleNext = () => {
-    setIsActive((current) => (current < 4 ? current + 1 : current));
-    isActive === 3 ? setFetch(true) : setFetch(false);
+    setIsActive((current) => (current < 5 ? current + 1 : current));
+    isActive === 5 ? setFetch(true) : setFetch(false);
   };
 
   const handleBack = () => {
     setIsActive((current) => (current > 0 ? current - 1 : current));
-    if (isActive === 4) {
-      topOfForm.current?.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   useEffect(() => {
@@ -57,12 +54,15 @@ export const FormComponent = () => {
       setTitle('Unfallversicherung');
     } else if (isActive === 4) {
       slider.style.transform = 'translateX(-120vw)';
+      setTitle('Weitere Offerten');
+    } else if (isActive === 5) {
+      slider.style.transform = 'translateX(-150vw)';
       setTitle('Angebote');
     }
   });
 
   useEffect(() => {
-    if (isActive === 3) {
+    if (isActive === 4) {
       setButtonText('Auswerten');
     } else {
       setButtonText('Weiter');
@@ -78,6 +78,7 @@ export const FormComponent = () => {
           <Age isActive={isActive} />
           <Franchise isActive={isActive} />
           <Accident isActive={isActive} />
+          <AddMore isActive={isActive} />
           <div className={styles.OffersContainer}>
             <OfferList isActive={isActive} />
           </div>
@@ -94,13 +95,14 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 4 ? styles.NotVisible : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.NotVisible : ''}`}
           id="advancebutton"
         >
           {buttonText}
         </button>
       </div>
       <div className={styles.IndicatorContainer}>
+        <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>

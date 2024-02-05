@@ -18,7 +18,7 @@
 .MultistepSlider {
     display: flex;
     flex-direction: row;
-    width: 150vw;
+    width: 180vw;
     transition: transform 0.6s ease-in-out;
     transition-delay: 0.1s;
     height: 60vh;
