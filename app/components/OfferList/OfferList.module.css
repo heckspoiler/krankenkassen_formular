@@ -51,11 +51,12 @@
 .Button {
     padding: 0.6vw 0.6vw;
     background-color: rgba(10, 251, 223, 0.736);
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
 
 }
 
 .Button:hover {
-    scale: 1.04;
+    scale: 1.02;
     background-color: var(--lightblue);
     cursor: pointer;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;

@@ -6,6 +6,7 @@ import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
 import { Accident } from './accidentComponent/Accident';
 import { OfferList } from '../OfferList/OfferList';
+import ContactForm from '../ContactForm/ContactForm';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
 
@@ -69,10 +70,10 @@ export const FormComponent = () => {
   }, [isActive]);
 
   return (
-    <div className={styles.Main}>
+    <div className={styles.Main} ref={topOfForm}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.Multistep}>
-        <div className={styles.MultistepSlider} ref={topOfForm}>
+        <div className={styles.MultistepSlider}>
           <Canton isActive={isActive} />
           <Age isActive={isActive} />
           <Franchise isActive={isActive} />

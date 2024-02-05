@@ -13,10 +13,8 @@
 .cantonContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 1.5vw;
-    column-gap: 1.5vw;
-    align-items: center;
-    justify-content: center;
+    row-gap: 1vw;
+    column-gap: 1vw;
     width: 30vw;
     padding: 0 2vw;
 
@@ -34,7 +32,7 @@
 }
 
 .Button:hover {
-    scale: 1.04;
+    scale: 1.02;
     background-color: var(--lightblue);
 }
 

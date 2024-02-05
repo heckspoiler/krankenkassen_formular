@@ -1,0 +1,132 @@
+.Main {
+    position: absolute;
+    height: 100vh;
+    width: 30vw;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-150%);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    padding: 3vw;
+    transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+
+.FormVisible {
+    visibility: visible;
+    transform: translateX(-50%) translateY(-50%);
+
+}
+
+.Main form {
+    gap: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Main h2 {
+    padding-bottom: 0vw;
+    padding-top: 2vw;
+}
+
+.Main p {
+    text-align: center;
+}
+
+.Main input,
+.Main textarea {
+    background-color: var(--background-grey);
+    padding: 0.7vw;
+    width: 20vw;
+}
+
+.Main label {
+    font-weight: bold;
+}
+
+.Main input:focus,
+.Main textarea:focus {
+    outline: 2px solid var(--lightblue);
+
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.Main textarea {
+    height: 15vh;
+}
+
+.FormGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+}
+
+.FormGroup label {
+    width: 6vw;
+}
+
+.Button {
+    padding: 1vw 0;
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    background-color: var(--lightblue);
+    outline: none;
+    font-size: calc(0.5em + 0.5vw);
+    width: 10vw;
+}
+
+.Button:hover {
+    scale: 1.02
+}
+
+
+.CrossContainer {
+    height: 1.8vw;
+    width: 1.8vw;
+    position: absolute;
+    top: 3vh;
+    right: 0;
+}
+
+.Cross {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 0.2s ease-in;
+    transform-origin: center;
+}
+
+.Cross:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+
+.Cross div {
+    height: 60%;
+    width: 3px;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s ease-in;
+
+}
+
+.Cross:hover div {
+    background-color: var(--lightblue);
+}
+
+
+.Cross div:nth-of-type(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.Cross div:nth-of-type(2) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}

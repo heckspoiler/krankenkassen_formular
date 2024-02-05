@@ -29,7 +29,7 @@
 }
 
 .Button:hover {
-    scale: 1.04;
+    scale: 1.02;
     background-color: var(--lightblue);
 }
 

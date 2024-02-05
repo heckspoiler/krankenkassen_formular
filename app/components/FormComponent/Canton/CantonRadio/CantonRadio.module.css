@@ -8,6 +8,10 @@
     gap: 1vw;
 }
 
+.Main p {
+    font-size: 0.9em;
+}
+
 .ButtonContainer {
 
     width: 40%;
@@ -19,13 +23,15 @@
 
 .Button {
     background-color: var(--background-grey);
-    padding: 0.5vw 1vw;
+    width: 4vw;
+    padding: 0.5vw 0;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    font-size: 0.9em;
 }
 
 .Button:hover {
     background-color: var(--lightblue);
-    scale: 1.03;
+    scale: 1.02;
 }
 
 .Active {

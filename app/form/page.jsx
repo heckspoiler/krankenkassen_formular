@@ -21,7 +21,6 @@ export default function Form() {
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
-  console.log('isFetching: ', isFetching);
 
   useEffect(() => {
     if (isFetching) {
@@ -40,12 +39,12 @@ export default function Form() {
           if (response.error) throw response.error;
 
           setDataset(response.data);
-          console.log('Data fetched from Supabase: ', response.data);
+          // console.log('Data fetched from Supabase: ', response.data);
         } catch (error) {
           console.error('Error fetching data from Supabase: ', error);
         }
       }
-      console.log('fetching data');
+
       fetchData();
     }
   }, [isFetching]);

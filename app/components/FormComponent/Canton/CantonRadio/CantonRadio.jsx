@@ -11,8 +11,6 @@ export const CantonRadio = () => {
     setCantonRadio(event.target.value);
   };
 
-  console.log('cantonRadio: ', cantonRadio);
-
   return (
     <section className={styles.Main}>
       <p>Sind Sie kürzlich in diesen Kanton umgezogen?</p>

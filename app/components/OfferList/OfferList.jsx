@@ -4,13 +4,19 @@ import styles from './OfferList.module.css';
 
 import { useStore } from 'zustand';
 import { datasetStore } from '@/utils/stores/datasetStore';
+import { contactFormStore } from '@/utils/stores/contactStore';
 
 export function OfferList() {
   const dataset = useStore(datasetStore).dataset;
+  const { showForm, setShowForm } = useStore(contactFormStore);
 
   const sortedDataset = [...dataset].sort(
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
   );
+
+  const showFormClick = () => {
+    !showForm ? setShowForm(true) : setShowForm(false);
+  };
 
   return (
     <main className={styles.Main}>
@@ -39,6 +45,7 @@ export function OfferList() {
                   className={styles.Button}
                   key={index}
                   name={offer.tarif}
+                  onClick={showFormClick}
                 >
                   Offerte einholen
                 </button>
