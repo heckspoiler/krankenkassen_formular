@@ -32,6 +32,26 @@
     overflow-x: hidden;
 }
 
+.OffersContainer::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+.OffersContainer::-webkit-scrollbar-track {
+    background: white;
+
+}
+
+.OffersContainer::-webkit-scrollbar-thumb {
+    background: var(--lightblue);
+
+}
+
+.OffersContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
+}
+
 .LowerContainer {
     width: 100%;
     display: flex;

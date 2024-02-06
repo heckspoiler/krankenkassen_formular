@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
 import styles from './ContactForm.module.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { contactFormStore } from '@/utils/stores/contactStore';
 
 export default function ContactForm() {

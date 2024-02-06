@@ -9,18 +9,19 @@ import { OfferList } from '../OfferList/OfferList';
 import { AddMore } from './addMoreComponent/AddMore';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
+import { addMoreStore } from '@/utils/stores/addMoreStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
   const [title, setTitle] = useState('Wohnkanton');
   const [buttonText, setButtonText] = useState('Weiter');
   const setFetch = useStore(fetchStore).setFetch;
-  const fetch = useStore(fetchStore).fetch;
   const topOfForm = useRef(null);
+  const { addMore, setAddMore } = useStore(addMoreStore);
 
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
-    isActive === 5 ? setFetch(true) : setFetch(false);
+    isActive === 4 ? setFetch(true) : setFetch(false);
   };
 
   const handleBack = () => {
@@ -39,35 +40,35 @@ export const FormComponent = () => {
   }, [isActive]);
 
   useEffect(() => {
-    const slider = document.querySelector(`.${styles.MultistepSlider}`);
-    if (isActive === 0) {
-      slider.style.transform = 'translateX(0)';
-      setTitle('Wohnkanton');
-    } else if (isActive === 1) {
-      slider.style.transform = 'translateX(-30vw)';
-      setTitle('Alterskategorie');
-    } else if (isActive === 2) {
-      slider.style.transform = 'translateX(-60vw)';
-      setTitle('Franchisehöhe');
-    } else if (isActive === 3) {
-      slider.style.transform = 'translateX(-90vw)';
-      setTitle('Unfallversicherung');
-    } else if (isActive === 4) {
-      slider.style.transform = 'translateX(-120vw)';
-      setTitle('Weitere Offerten');
-    } else if (isActive === 5) {
-      slider.style.transform = 'translateX(-150vw)';
-      setTitle('Angebote');
-    }
-  });
+    const syncUrlWithState = () => {
+      const stepTitles = [
+        'Wohnkanton',
+        'Alterskategorie',
+        'Franchisehöhe',
+        'Unfallversicherung',
+        'Weitere Offerten',
+        'Angebote',
+      ];
+
+      const slider = document.querySelector(`.${styles.MultistepSlider}`);
+
+      if (isActive >= 0 && isActive < stepTitles.length) {
+        slider.style.transform = `translateX(-${30 * isActive}vw)`;
+        setTitle(stepTitles[isActive]);
+      }
+    };
+
+    syncUrlWithState();
+  }, [isActive]);
 
   useEffect(() => {
+    console.log(`Current state - isActive: ${isActive}, addMore: ${addMore}`);
     if (isActive === 4) {
       setButtonText('Auswerten');
     } else {
       setButtonText('Weiter');
     }
-  }, [isActive]);
+  }, [isActive, addMore]);
 
   return (
     <div className={styles.Main} ref={topOfForm}>
