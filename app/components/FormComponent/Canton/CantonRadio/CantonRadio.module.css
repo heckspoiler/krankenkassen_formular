@@ -36,4 +36,5 @@
 
 .Active {
     background-color: var(--lightblue);
+    color: white;
 }

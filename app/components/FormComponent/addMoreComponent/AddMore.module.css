@@ -24,6 +24,7 @@
 .Button:hover {
     scale: 1.02;
     background-color: var(--lightblue);
+    color: white;
 }
 
 .Button:active {
@@ -34,4 +35,5 @@
 .Active {
     scale: 1;
     background-color: var(--lightblue);
+    color: white;
 }

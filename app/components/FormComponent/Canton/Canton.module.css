@@ -44,4 +44,5 @@
 .Active {
     scale: 1;
     background-color: var(--lightblue);
+    color: white;
 }

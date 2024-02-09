@@ -73,6 +73,7 @@
 .AdvanceButton:hover {
     scale: 1.02;
     background-color: var(--lightblue);
+    color: white;
 }
 
 .IndicatorContainer {
@@ -107,4 +108,5 @@
 .Active {
     transform: scale(1.05);
     background-color: var(--lightblue);
+    color: white;
 }
