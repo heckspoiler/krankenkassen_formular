@@ -19,15 +19,14 @@ export const FormComponent = () => {
   const topOfForm = useRef(null);
   const { addMore, setAddMore } = useStore(addMoreStore);
 
-  const Users = [];
-
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
-    isActive === 4 && !addMore ? setFetch(true) : setFetch(false);
+    isActive === 4 ? setFetch(true) : setFetch(false);
   };
 
   const handleBack = () => {
     setIsActive((current) => (current > 0 ? current - 1 : current));
+    setFetch(false);
   };
 
   useEffect(() => {

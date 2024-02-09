@@ -24,8 +24,13 @@ export default function Form() {
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
 
+  console.log('is fetching server: ', isFetching);
+
   useEffect(() => {
-    console.log('Users:', users);
+    console.log('number of users:', users.length, users);
+  }, [users.length]);
+
+  useEffect(() => {
     if (isFetching) {
       async function fetchData() {
         try {
