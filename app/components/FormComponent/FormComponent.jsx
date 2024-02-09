@@ -19,9 +19,18 @@ export const FormComponent = () => {
   const topOfForm = useRef(null);
   const { addMore, setAddMore } = useStore(addMoreStore);
 
+  // useEffect(() => {
+  //   console.log('addMore: ', addMore);
+  // }, [addMore]);
+
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
     isActive === 4 ? setFetch(true) : setFetch(false);
+    if (isActive === 4 && addMore) {
+      setIsActive(0);
+    } else {
+      setAddMore(false);
+    }
   };
 
   const handleBack = () => {
@@ -41,6 +50,7 @@ export const FormComponent = () => {
   }, [isActive]);
 
   useEffect(() => {
+    const slider = document.querySelector(`.${styles.MultistepSlider}`);
     const syncUrlWithState = () => {
       const stepTitles = [
         'Wohnkanton',
@@ -51,9 +61,8 @@ export const FormComponent = () => {
         'Angebote',
       ];
 
-      const slider = document.querySelector(`.${styles.MultistepSlider}`);
-
       if (isActive >= 0 && isActive < stepTitles.length) {
+        console.log(addMore, isActive);
         slider.style.transform = `translateX(-${30 * isActive}vw)`;
         setTitle(stepTitles[isActive]);
       }
@@ -100,7 +109,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.NotVisible : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}
