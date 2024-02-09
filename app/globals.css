@@ -31,7 +31,9 @@ h2 {
 
 
 body {
-  color: rgb(var(--foreground-rgb));
+  background-color: transparent;
+  background-color: white;
+  ;
 
 }
 
