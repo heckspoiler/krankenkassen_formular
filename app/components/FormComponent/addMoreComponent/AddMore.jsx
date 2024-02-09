@@ -3,8 +3,7 @@
 import React, { useEffect } from 'react';
 import styles from './AddMore.module.css';
 import { useStore } from 'zustand';
-import { addMoreStore } from '@/utils/stores/AddMoreStore';
-
+import { addMoreStore } from '@/utils/stores/addMoreStore';
 export const AddMore = () => {
   const { addMore, setAddMore } = useStore(addMoreStore);
 
