@@ -12,6 +12,8 @@ import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
 
+export const users = [];
+
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
   const canton = selectedCanton.canton;
@@ -23,6 +25,7 @@ export default function Form() {
   const isFetching = useStore(fetchStore).fetch;
 
   useEffect(() => {
+    console.log('Users:', users);
     if (isFetching) {
       async function fetchData() {
         try {
@@ -39,7 +42,7 @@ export default function Form() {
           if (response.error) throw response.error;
 
           setDataset(response.data);
-          // console.log('Data fetched from Supabase: ', response.data);
+          users.push(response.data);
         } catch (error) {
           console.error('Error fetching data from Supabase: ', error);
         }

@@ -19,9 +19,11 @@ export const FormComponent = () => {
   const topOfForm = useRef(null);
   const { addMore, setAddMore } = useStore(addMoreStore);
 
+  const Users = [];
+
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
-    isActive === 4 ? setFetch(true) : setFetch(false);
+    isActive === 4 && !addMore ? setFetch(true) : setFetch(false);
   };
 
   const handleBack = () => {
@@ -62,9 +64,12 @@ export const FormComponent = () => {
   }, [isActive]);
 
   useEffect(() => {
-    console.log(`Current state - isActive: ${isActive}, addMore: ${addMore}`);
     if (isActive === 4) {
-      setButtonText('Auswerten');
+      if (addMore) {
+        setButtonText('Hinzufügen');
+      } else {
+        setButtonText('Auswerten');
+      }
     } else {
       setButtonText('Weiter');
     }
@@ -75,11 +80,11 @@ export const FormComponent = () => {
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.Multistep}>
         <div className={styles.MultistepSlider}>
-          <Canton isActive={isActive} />
-          <Age isActive={isActive} />
-          <Franchise isActive={isActive} />
-          <Accident isActive={isActive} />
-          <AddMore isActive={isActive} />
+          <Canton />
+          <Age />
+          <Franchise />
+          <Accident />
+          <AddMore />
           <div className={styles.OffersContainer}>
             <OfferList isActive={isActive} />
           </div>

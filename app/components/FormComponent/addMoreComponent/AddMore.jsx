@@ -8,8 +8,7 @@ export const AddMore = () => {
   const { addMore, setAddMore } = useStore(addMoreStore);
 
   const handleAddMore = (e) => {
-    setAddMore(e.target.value === 'ja');
-    console.log(addMore);
+    e.target.value === 'ja' ? setAddMore(true) : setAddMore(false);
   };
 
   return (
