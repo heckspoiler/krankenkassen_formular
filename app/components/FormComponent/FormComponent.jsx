@@ -28,6 +28,7 @@ export const FormComponent = () => {
     isActive === 4 ? setFetch(true) : setFetch(false);
     if (isActive === 4 && addMore) {
       setIsActive(0);
+      setFetch(true);
     } else {
       setAddMore(false);
     }
