@@ -1,7 +1,12 @@
-import { Inter } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '700', '900'],
+  style: 'normal',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Krankenkassenformular',
