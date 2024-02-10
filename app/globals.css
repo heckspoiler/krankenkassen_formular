@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+
   --background-grey: rgb(247, 246, 246);
   --background-grey-darker: rgb(203, 203, 203);
   --font-black: rgb(52, 52, 52);
@@ -12,8 +13,6 @@
   --font: Arial;
   --lightblueold: rgba(10, 251, 223, 0.736);
   --hello: red;
-
-
 }
 
 h2 {
