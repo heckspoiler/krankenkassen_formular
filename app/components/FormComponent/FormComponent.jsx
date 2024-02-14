@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './FormComponent.module.css';
 import { Canton } from './Canton/Canton';
+import { Region } from './regionComponent/Region';
 import { Age } from './AgeComponent/Age';
 import { Franchise } from './FranchiseComponent/Franchise';
 import { Accident } from './accidentComponent/Accident';
@@ -19,14 +20,10 @@ export const FormComponent = () => {
   const topOfForm = useRef(null);
   const { addMore, setAddMore } = useStore(addMoreStore);
 
-  // useEffect(() => {
-  //   console.log('addMore: ', addMore);
-  // }, [addMore]);
-
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
-    isActive === 4 ? setFetch(true) : setFetch(false);
-    if (isActive === 4 && addMore) {
+    isActive === 5 ? setFetch(true) : setFetch(false);
+    if (isActive === 5 && addMore) {
       setIsActive(0);
       setFetch(true);
     } else {
@@ -55,6 +52,7 @@ export const FormComponent = () => {
     const syncUrlWithState = () => {
       const stepTitles = [
         'Wohnkanton',
+        'Postleitzahl',
         'Alterskategorie',
         'Franchisehöhe',
         'Unfallversicherung',
@@ -73,7 +71,7 @@ export const FormComponent = () => {
   }, [isActive]);
 
   useEffect(() => {
-    if (isActive === 4) {
+    if (isActive === 5) {
       if (addMore) {
         setButtonText('Hinzufügen');
       } else {
@@ -90,6 +88,7 @@ export const FormComponent = () => {
       <div className={styles.Multistep}>
         <div className={styles.MultistepSlider}>
           <Canton />
+          <Region />
           <Age />
           <Franchise />
           <Accident />
@@ -117,6 +116,7 @@ export const FormComponent = () => {
         </button>
       </div>
       <div className={styles.IndicatorContainer}>
+        <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>
         <div className={styles.Indicator}></div>

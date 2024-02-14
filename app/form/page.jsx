@@ -11,6 +11,7 @@ import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
+import { regionStore } from '@/utils/stores/regionStore';
 
 export const users = [];
 
@@ -23,12 +24,7 @@ export default function Form() {
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
-
-  console.log('is fetching server: ', isFetching);
-
-  useEffect(() => {
-    console.log('number of users:', users.length, users);
-  }, [users.length]);
+  const region = useStore(regionStore).region;
 
   useEffect(() => {
     if (isFetching) {
@@ -39,6 +35,7 @@ export default function Form() {
             .select(
               'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
             )
+            .eq('region', region)
             .eq('kanton', canton)
             .eq('altersklasse', selectedAge)
             .eq('franchise', selectedFranchise)

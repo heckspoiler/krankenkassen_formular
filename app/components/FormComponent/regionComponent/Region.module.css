@@ -1,0 +1,24 @@
+.Main {
+    width: 30vw;
+    transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
+    transition-delay: 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10vh;
+
+}
+
+.Main input {
+
+    background-color: var(--background-grey);
+    padding: 1vw 0.7vw;
+    width: 20vw;
+}
+
+.Main input:focus {
+    outline: 2px solid var(--lightblue);
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
