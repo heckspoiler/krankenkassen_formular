@@ -16,7 +16,7 @@ import { regionStore } from '@/utils/stores/regionStore';
 import { singleCanton } from '@/utils/stores/cantonArray';
 
 export const users = [];
-const emailStore = [];
+export const emailStore = [];
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
