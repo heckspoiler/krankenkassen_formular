@@ -11,7 +11,7 @@ import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
-import { regionStore } from '@/utils/stores/regionStore';
+import { plzStore } from '@/utils/stores/plzStore';
 
 export const users = [];
 
@@ -24,7 +24,25 @@ export default function Form() {
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
-  const region = useStore(regionStore).region;
+  const plz = useStore(plzStore).plz;
+
+  useEffect(() => {
+    if (plz !== 0) {
+      async function fetchRegion() {
+        try {
+          const response = await supabase
+            .from('regions')
+            .select('plz, praemienregion')
+            .eq('plz', plz);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching data from Supabase: ', error);
+        }
+      }
+
+      fetchRegion();
+    }
+  }, [plz]);
 
   useEffect(() => {
     if (isFetching) {
