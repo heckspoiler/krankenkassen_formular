@@ -16,6 +16,7 @@ import { regionStore } from '@/utils/stores/regionStore';
 import { singleCanton } from '@/utils/stores/cantonArray';
 
 export const users = [];
+const emailStore = [];
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
@@ -85,6 +86,15 @@ export default function Form() {
 
           setDataset(response.data);
           users.push(response.data);
+          emailStore.push(
+            canton,
+            region,
+            plz,
+            selectedAge,
+            selectedFranchise,
+            selectedAccident
+          );
+          console.log('Email Store: ', emailStore);
         } catch (error) {
           console.error('Error fetching data from Supabase: ', error);
         }
