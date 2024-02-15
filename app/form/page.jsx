@@ -11,9 +11,12 @@ import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
+import { plzStore } from '@/utils/stores/plzStore';
 import { regionStore } from '@/utils/stores/regionStore';
+import { singleCanton } from '@/utils/stores/cantonArray';
 
 export const users = [];
+export const emailStore = [];
 
 export default function Form() {
   const selectedCanton = useStore(cantonStore);
@@ -24,7 +27,45 @@ export default function Form() {
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
-  const region = useStore(regionStore).region;
+  const plz = useStore(plzStore).plz;
+  const { region, setRegion } = useStore(regionStore);
+
+  useEffect(() => {
+    if (plz !== 0) {
+      async function fetchRegion() {
+        try {
+          const response = await supabase
+            .from('regions')
+            .select('plz, praemienregion')
+            .eq('plz', plz);
+
+          if (singleCanton.includes(canton)) {
+            setRegion('PR-REG CH0');
+          } else if (
+            !singleCanton.includes(canton) &&
+            response.data[0].praemienregion !== 2 &&
+            response.data[0].praemienregion !== 3
+          ) {
+            setRegion('PR-REG CH1');
+          } else if (response.data[0].praemienregion === 2) {
+            setRegion('PR-REG CH2');
+          } else {
+            setRegion('PR-REG CH3');
+          }
+
+          console.log('Region: ', region);
+          console.log('Canton: ', canton);
+        } catch (error) {
+          alert(
+            'Diese Postleitzahl konnte leider nicht in diesem Kanton gefunden werden. Bitte versuchen Sie es erneut.'
+          );
+          console.error('Error fetching data from Supabase: ', error);
+        }
+      }
+
+      fetchRegion();
+    }
+  }, [plz]);
 
   useEffect(() => {
     if (isFetching) {
@@ -35,8 +76,8 @@ export default function Form() {
             .select(
               'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
             )
-            .eq('region', region)
             .eq('kanton', canton)
+            .eq('region', region)
             .eq('altersklasse', selectedAge)
             .eq('franchise', selectedFranchise)
             .eq('unfall', selectedAccident);
@@ -45,6 +86,15 @@ export default function Form() {
 
           setDataset(response.data);
           users.push(response.data);
+          emailStore.push(
+            canton,
+            region,
+            plz,
+            selectedAge,
+            selectedFranchise,
+            selectedAccident
+          );
+          console.log('Email Store: ', emailStore);
         } catch (error) {
           console.error('Error fetching data from Supabase: ', error);
         }

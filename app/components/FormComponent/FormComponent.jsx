@@ -21,7 +21,7 @@ export const FormComponent = () => {
   const { addMore, setAddMore } = useStore(addMoreStore);
 
   const handleNext = () => {
-    setIsActive((current) => (current < 5 ? current + 1 : current));
+    setIsActive((current) => (current < 6 ? current + 1 : current));
     isActive === 5 ? setFetch(true) : setFetch(false);
     if (isActive === 5 && addMore) {
       setIsActive(0);
@@ -61,7 +61,6 @@ export const FormComponent = () => {
       ];
 
       if (isActive >= 0 && isActive < stepTitles.length) {
-        console.log(addMore, isActive);
         slider.style.transform = `translateX(-${30 * isActive}vw)`;
         setTitle(stepTitles[isActive]);
       }
@@ -109,7 +108,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.Disabled : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 6 ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}
