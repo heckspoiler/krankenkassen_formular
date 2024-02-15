@@ -61,7 +61,6 @@ export const FormComponent = () => {
       ];
 
       if (isActive >= 0 && isActive < stepTitles.length) {
-        console.log(addMore, isActive);
         slider.style.transform = `translateX(-${30 * isActive}vw)`;
         setTitle(stepTitles[isActive]);
       }

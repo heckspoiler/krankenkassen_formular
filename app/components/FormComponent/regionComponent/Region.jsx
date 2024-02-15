@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import styles from './Region.module.css';
 import { useStore } from 'zustand';
-import { plzStore } from '../../../../utils/stores/plzStore';
+import { plzStore } from '@/utils/stores/plzStore';
+import { regionStore } from '@/utils/stores/regionStore';
 
 export const Region = () => {
   const { plz, setPLZ } = useStore(plzStore);
   const [inputValue, setInputValue] = useState('');
+  const { region, setRegion } = useStore(regionStore);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -19,7 +21,6 @@ export const Region = () => {
   const handleInputBlur = () => {
     if (inputValue !== '') {
       setPLZ(Number(inputValue));
-      console.log(plz);
     }
   };
 

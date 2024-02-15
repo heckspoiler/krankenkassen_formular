@@ -12,6 +12,8 @@ import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
 import { plzStore } from '@/utils/stores/plzStore';
+import { regionStore } from '@/utils/stores/regionStore';
+import { singleCanton } from '@/utils/stores/cantonArray';
 
 export const users = [];
 
@@ -25,6 +27,7 @@ export default function Form() {
   const selectedAccident = useStore(accidentStore).accident;
   const isFetching = useStore(fetchStore).fetch;
   const plz = useStore(plzStore).plz;
+  const { region, setRegion } = useStore(regionStore);
 
   useEffect(() => {
     if (plz !== 0) {
@@ -34,8 +37,27 @@ export default function Form() {
             .from('regions')
             .select('plz, praemienregion')
             .eq('plz', plz);
-          console.log(response.data);
+
+          if (singleCanton.includes(canton)) {
+            setRegion('PR-REG CH0');
+          } else if (
+            !singleCanton.includes(canton) &&
+            response.data[0].praemienregion !== 2 &&
+            response.data[0].praemienregion !== 3
+          ) {
+            setRegion('PR-REG CH1');
+          } else if (response.data[0].praemienregion === 2) {
+            setRegion('PR-REG CH2');
+          } else {
+            setRegion('PR-REG CH3');
+          }
+
+          console.log('Region: ', region);
+          console.log('Canton: ', canton);
         } catch (error) {
+          alert(
+            'Diese Postleitzahl konnte leider nicht in diesem Kanton gefunden werden. Bitte versuchen Sie es erneut.'
+          );
           console.error('Error fetching data from Supabase: ', error);
         }
       }
@@ -53,8 +75,8 @@ export default function Form() {
             .select(
               'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
             )
-            .eq('region', region)
             .eq('kanton', canton)
+            .eq('region', region)
             .eq('altersklasse', selectedAge)
             .eq('franchise', selectedFranchise)
             .eq('unfall', selectedAccident);
