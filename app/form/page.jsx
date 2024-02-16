@@ -45,11 +45,16 @@ export default function Form() {
 
           const canton = response.data[0].canton;
           setCanton(findCantonAbbreviation(canton));
-          setRegion(response.data[0].region);
 
-          const praemienregion = response.data[0].praemienregion;
-          if (praemienregion >= 0 && praemienregion <= 3) {
-            setRegion(praemienregion);
+          const praemienregion = response.data[0].region;
+          if (praemienregion === 0) {
+            setRegion('PR-REG CH0');
+          } else if (praemienregion === 1) {
+            setRegion('PR-REG CH1');
+          } else if (praemienregion === 2) {
+            setRegion('PR-REG CH2');
+          } else if (praemienregion === 3) {
+            setRegion('PR-REG CH3');
           }
         } catch (error) {
           alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
@@ -68,26 +73,17 @@ export default function Form() {
           const response = await supabase
             .from('praemien')
             .select(
-              'versicherer, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
+              'versicherer, kanton, altersklasse, unfall, tarif, franchisestufe, praemie, region'
             )
             .eq('kanton', canton)
-            .eq('region', region)
+            .eq('unfall', selectedAccident)
             .eq('altersklasse', selectedAge)
-            .eq('franchise', selectedFranchise)
-            .eq('unfall', selectedAccident);
+            .eq('region', region);
 
-          console.log(
-            canton,
-            region,
-            selectedAccident,
-            selectedAge,
-            selectedFranchise,
-            plz,
-            cantonRadio
-          );
+          console.log(region);
 
           setDataset(response.data);
-          console.log(dataset);
+          console.log(response.data);
 
           if (response.error) throw response.error;
 
@@ -106,7 +102,6 @@ export default function Form() {
           console.error('Error fetching data from Supabase: ', error);
         }
       }
-
       fetchData();
     }
   }, [fetch]);

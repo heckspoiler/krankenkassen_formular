@@ -20,8 +20,8 @@ export const FormComponent = () => {
 
   const handleNext = () => {
     setIsActive((current) => (current < 5 ? current + 1 : current));
-    isActive === 3 ? setFetch(true) : setFetch(false);
-    console.log(fetch)
+    isActive === 4 ? setFetch(true) : setFetch(false);
+    console.log(fetch);
   };
 
   const handleBack = () => {
