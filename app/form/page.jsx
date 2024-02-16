@@ -76,10 +76,21 @@ export default function Form() {
             .eq('franchise', selectedFranchise)
             .eq('unfall', selectedAccident);
 
-          if (response.error) throw response.error;
+          console.log(
+            canton,
+            region,
+            selectedAccident,
+            selectedAge,
+            selectedFranchise,
+            plz,
+            cantonRadio
+          );
 
           setDataset(response.data);
           console.log(dataset);
+
+          if (response.error) throw response.error;
+
           users.push(response.data);
           emailStore.push(
             `Kanton: ${canton}`,
