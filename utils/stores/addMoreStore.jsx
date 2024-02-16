@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
 export const addMoreStore = create((set) => ({
-  addMore: false,
+  addMore: '0',
   setAddMore: (addMore) => set({ addMore }),
 }));

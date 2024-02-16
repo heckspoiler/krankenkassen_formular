@@ -5,6 +5,8 @@ import styles from './Region.module.css';
 import { useStore } from 'zustand';
 import { plzStore } from '@/utils/stores/plzStore';
 import { regionStore } from '@/utils/stores/regionStore';
+import { CantonRadio } from '../Canton/CantonRadio/CantonRadio';
+import { CurrentlyLiving } from '../Canton/currentlyLiving/CurrentlyLiving';
 
 export const Region = () => {
   const { plz, setPLZ } = useStore(plzStore);
@@ -26,6 +28,8 @@ export const Region = () => {
 
   return (
     <div className={styles.Main}>
+      <CurrentlyLiving />
+      <CantonRadio />
       <p>Bitte geben Sie Ihre Postleitzahl ein</p>
       <input
         type="text"
