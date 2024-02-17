@@ -103,15 +103,15 @@ export default function Form() {
           const regionCode = praemiendecode(region);
           users.push(response.data);
           emailStore.push(
-            `Wohnhaft Schweiz: ${currentlyLiving}`,
-            `Wohnhaft Kanton: ${cantonRadio}`,
-            `Kanton: ${canton}`,
-            `Region: ${regionCode}`,
-            `PLZ: ${plz}`,
-            `Alter: ${selectedAge}`,
-            `Franchise: ${selectedFranchise}`,
-            `Unfalldeckung: ${selectedAccident}`,
-            `Kanton-Radio: ${cantonRadio}`
+            currentlyLiving,
+            cantonRadio,
+            canton,
+            regionCode,
+            plz,
+            selectedAge,
+            selectedFranchise,
+            selectedAccident,
+            cantonRadio
           );
           console.log('Email Store: ', emailStore);
         } catch (error) {

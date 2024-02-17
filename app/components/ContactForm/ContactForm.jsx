@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ContactForm.module.css';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
@@ -8,8 +8,42 @@ import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
+export const formInformation = [];
+
 export default function ContactForm() {
   const [showForm, setShowForm] = useState(false);
+
+  const sendMail = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      surname,
+      firstname,
+      email,
+      birthday: birthday ? birthday.toISOString() : '',
+      phone,
+      text,
+    };
+
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const {
     surname,
@@ -30,21 +64,16 @@ export default function ContactForm() {
     setShowForm(!showForm);
   };
 
-  const logForm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const currentState = [surname, firstname, email, birthday, phone, text];
-    console.log(currentState);
-  };
-
-  const formatDate = (date) => {
-    if (!date) return '';
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+    formInformation.push({
+      surname,
+      firstname,
+      email,
+      birthday,
+      phone,
+      text,
+    });
   };
 
   return (
@@ -55,7 +84,7 @@ export default function ContactForm() {
           <div></div>
         </div>
       </div>
-      <form>
+      <form onSubmit={sendMail}>
         <h2 className={styles.Title}>Erhalten Sie Ihre Offerte</h2>
         <p>
           Wir werden Ihre Anliegen vertraulich behandeln und die gewünschte
@@ -86,13 +115,7 @@ export default function ContactForm() {
         </div>
         <div className={styles.FormGroup}>
           <label htmlFor="birthday">Geburtsdatum</label>
-          {/* <input
-            type="date"
-            id="birthday"
-            name="birthday"
-            value={birthday}
-            onChange={(e) => setBirthday(new Date(e.target.value))}
-          /> */}
+
           <DatePicker
             className={styles.DatePicker}
             selected={birthday}
@@ -140,7 +163,7 @@ export default function ContactForm() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button type="submit" className={styles.Button} onClick={logForm}>
+        <button type="submit" className={styles.Button}>
           Offerte einholen
         </button>
       </form>
