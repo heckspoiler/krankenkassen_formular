@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './AddMore.module.css';
 import { useStore } from 'zustand';
@@ -11,7 +13,7 @@ export const AddMore = () => {
   };
 
   return (
-    <main name="addmore" id="AddMoreSelect" className={styles.Main}>
+    <section name="addmore" id="AddMoreSelect" className={styles.Main}>
       <h3>Möchten Sie noch weitere Personen zur Offerte hinzufügen?</h3>
       <button
         value="0"
@@ -55,6 +57,6 @@ export const AddMore = () => {
         Der Prämienvergleich bezieht sich auf eine Person. Angebote für weitere
         Personen erhalten Sie in der persönlichen Offerte.
       </p>
-    </main>
+    </section>
   );
 };

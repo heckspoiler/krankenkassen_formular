@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './Accident.module.css';
 import { useStore } from 'zustand';
@@ -6,7 +8,6 @@ import { datasetStore } from '@/utils/stores/datasetStore';
 
 export const Accident = ({ isActive }) => {
   const { accident, setAccident } = useStore(accidentStore);
-  const [dataset, setDataset] = useStore(datasetStore).dataset;
 
   const accidentValues = [
     { code: 'MIT-UNF', label: 'Mit Unfallversicherung' },

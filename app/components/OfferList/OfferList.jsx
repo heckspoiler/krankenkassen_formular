@@ -27,7 +27,7 @@ export function OfferList({ isActive, setIsActive }) {
   };
 
   return (
-    <main className={styles.Main}>
+    <section className={styles.Main}>
       <div className={styles.OfferList}>
         {sortedDataset.map((offer, index) => {
           const formattedPraemie =
@@ -74,6 +74,6 @@ export function OfferList({ isActive, setIsActive }) {
           );
         })}
       </div>
-    </main>
+    </section>
   );
 }

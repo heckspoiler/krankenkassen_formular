@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './Age.module.css';
 import { useStore } from 'zustand';

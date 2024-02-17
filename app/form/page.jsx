@@ -123,8 +123,8 @@ export default function Form() {
   }, [fetch]);
 
   return (
-    <main className={styles.Main}>
+    <section className={styles.Main}>
       <FormComponent />
-    </main>
+    </section>
   );
 }

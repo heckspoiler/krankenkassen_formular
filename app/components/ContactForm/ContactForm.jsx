@@ -3,10 +3,14 @@ import { useState, useEffect } from 'react';
 import styles from './ContactForm.module.css';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
-import PhoneInput from 'react-phone-number-input';
+import dynamic from 'next/dynamic';
 import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const PhoneInput = dynamic(() => import('react-phone-number-input'), {
+  ssr: false,
+});
 
 export const formInformation = [];
 
@@ -45,7 +49,7 @@ export default function ContactForm() {
   };
 
   return (
-    <main className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
+    <section className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
       <div className={styles.CrossContainer} onClick={showFormClick}>
         <div className={styles.Cross}>
           <div></div>
@@ -63,19 +67,15 @@ export default function ContactForm() {
           <label htmlFor="surname">Nachname</label>
           <input
             type="text"
-            id="surname"
-            name="surname"
             value={surname}
             onChange={(e) => setSurname(e.target.value)}
             required
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="firstname">Vorname</label>
+          <label htmlFor="firstnameeeeee">Vorname</label>
           <input
             type="text"
-            id="firstname"
-            name="firstname"
             value={firstname}
             onChange={(e) => setFirstname(e.target.value)}
             required
@@ -110,7 +110,7 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="phone">Telefon</label>
+          <label htmlFor="phoneinput">Telefon</label>
           <div className={styles.PhoneInputContainer}>
             <PhoneInput
               className={styles.PhoneInput}
@@ -135,6 +135,6 @@ export default function ContactForm() {
           Offerte einholen
         </button>
       </form>
-    </main>
+    </section>
   );
 }
