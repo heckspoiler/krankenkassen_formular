@@ -5,10 +5,13 @@ import styles from './OfferList.module.css';
 import { useStore } from 'zustand';
 import { datasetStore } from '@/utils/stores/datasetStore';
 import { contactFormStore } from '@/utils/stores/contactStore';
+import { franchiseStore } from '@/utils/stores/franchiseStore';
+import { fetchStore } from '@/utils/stores/fetchStore';
 
-export function OfferList() {
+export function OfferList({ isActive, setIsActive }) {
   const dataset = useStore(datasetStore).dataset;
   const { showForm, setShowForm } = useStore(contactFormStore);
+  const { fetch, setFetch } = useStore(fetchStore);
 
   const sortedDataset = [...dataset].sort(
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
@@ -18,8 +21,13 @@ export function OfferList() {
     !showForm ? setShowForm(true) : setShowForm(false);
   };
 
+  const anotherFranchise = () => {
+    setIsActive(4);
+    setFetch(false);
+  };
+
   return (
-    <main className={styles.Main}>
+    <section className={styles.Main}>
       <div className={styles.OfferList}>
         {sortedDataset.map((offer, index) => {
           const formattedPraemie =
@@ -39,8 +47,16 @@ export function OfferList() {
                 <div className={styles.TextContainer}>
                   <h3 className={styles.OfferTitle}>{versichererName}</h3>
                   <p className={styles.OfferText}>
-                    Offerte: <strong>{offer.tarif}</strong>
+                    Tarif für: <strong>{offer.tarif}</strong>
                   </p>
+                  <button
+                    className={styles.FranchiseButton}
+                    key={index}
+                    name={offer.tarif}
+                    onClick={anotherFranchise}
+                  >
+                    Franchise ändern
+                  </button>
                 </div>
                 <div className={styles.TextContainer}>
                   <p className={styles.PraemieText}>{formattedPraemie}</p>
@@ -58,6 +74,6 @@ export function OfferList() {
           );
         })}
       </div>
-    </main>
+    </section>
   );
 }

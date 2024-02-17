@@ -50,8 +50,8 @@ export const FormComponent = () => {
         'Wohnsituation',
         'Alterskategorie',
         'Unfallversicherung',
-        'Franchisehöhe',
         'Weitere Offerten',
+        'Franchisehöhe',
         'Angebote',
       ];
 
@@ -80,10 +80,10 @@ export const FormComponent = () => {
           <Region />
           <Age />
           <Accident />
-          <Franchise />
           <AddMore />
+          <Franchise />
           <div className={styles.OffersContainer}>
-            <OfferList isActive={isActive} />
+            <OfferList isActive={isActive} setIsActive={setIsActive} />
           </div>
         </div>
       </div>
