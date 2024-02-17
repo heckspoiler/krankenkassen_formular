@@ -13,38 +13,6 @@ export const formInformation = [];
 export default function ContactForm() {
   const [showForm, setShowForm] = useState(false);
 
-  const sendMail = async (e) => {
-    e.preventDefault();
-
-    const formData = {
-      surname,
-      firstname,
-      email,
-      birthday: birthday ? birthday.toISOString() : '',
-      phone,
-      text,
-    };
-
-    try {
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      console.log('Success:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
   const {
     surname,
     setSurname,
@@ -84,7 +52,7 @@ export default function ContactForm() {
           <div></div>
         </div>
       </div>
-      <form onSubmit={sendMail}>
+      <form>
         <h2 className={styles.Title}>Erhalten Sie Ihre Offerte</h2>
         <p>
           Wir werden Ihre Anliegen vertraulich behandeln und die gewünschte
