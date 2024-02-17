@@ -52,9 +52,8 @@ export const AddMore = () => {
       <p
         className={`${styles.Paragraph} ${addMore !== '0' ? styles.Visible : ''}`}
       >
-        Die folgenden Offerten beziehen sich lediglich auf eine Person. Angebote
-        für weitere Personen erhalten Sie durch einen Versicherungsbroker.
-        (gennd mer no z'richtiga wording für das)
+        Der Prämienvergleich bezieht sich auf eine Person. Angebote für weitere
+        Personen erhalten Sie in der persönlichen Offerte.
       </p>
     </main>
   );

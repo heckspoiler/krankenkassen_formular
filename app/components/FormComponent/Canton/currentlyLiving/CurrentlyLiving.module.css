@@ -21,13 +21,14 @@
     background-color: var(--background-grey);
     width: 4vw;
     padding: 0.5vw 0;
-    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
     font-size: 0.9em;
 }
 
 .Button:hover {
     background-color: var(--lightblue);
     scale: 1.02;
+    color: white;
 }
 
 .Active {

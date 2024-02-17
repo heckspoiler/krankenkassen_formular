@@ -21,7 +21,7 @@
 .Button {
 
     padding: 1.2vw 0;
-    transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+    transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
     font-size: calc(0.5em + 0.5vw);
@@ -31,6 +31,7 @@
 .Button:hover {
     scale: 1.02;
     background-color: var(--lightblue);
+    color: white;
 }
 
 .Button:active {

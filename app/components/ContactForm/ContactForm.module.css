@@ -4,12 +4,13 @@
     width: 30vw;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-150%);
+    /* transform: translateX(-50%) translateY(-150%); */
+    transform: translateX(-50%) translateY(-50%);
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    visibility: hidden;
+    /* visibility: hidden; */
     padding: 3vw;
     transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
@@ -23,7 +24,7 @@
 }
 
 .Main form {
-    gap: 2vw;
+    gap: 1vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +53,6 @@
 .Main input:focus,
 .Main textarea:focus {
     outline: 2px solid var(--lightblue);
-
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
@@ -65,24 +65,51 @@
     justify-content: center;
     align-items: center;
     gap: 3vw;
+
 }
 
 .FormGroup label {
     width: 6vw;
 }
 
+
+.PhoneInputContainer {
+    background-color: var(--background-grey);
+    padding-left: 10px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.PhoneInput {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 20vw !important;
+}
+
+.PhoneInput * {
+    background-color: var(--background-grey);
+
+}
+
+
+
+
+
 .Button {
-    padding: 1vw 0;
+    padding: 1vw 1vw;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--lightblue);
     outline: none;
     font-size: calc(0.5em + 0.5vw);
-    width: 10vw;
+    color: white;
 }
 
 .Button:hover {
     scale: 1.02
 }
+
+
 
 
 .CrossContainer {
