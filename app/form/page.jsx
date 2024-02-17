@@ -34,6 +34,21 @@ export default function Form() {
     return cantons[fullName];
   };
 
+  const praemiendecode = function (praemienregion) {
+    switch (praemienregion) {
+      case '0':
+        return 'PR-REG CH0';
+      case '1':
+        return 'PR-REG CH1';
+      case '2':
+        return 'PR-REG CH2';
+      case '3':
+        return 'PR-REG CH3';
+      default:
+        return '';
+    }
+  };
+
   useEffect(() => {
     if (plz !== 0) {
       async function fetchRegion() {
@@ -43,19 +58,9 @@ export default function Form() {
             .select('canton, plz, region')
             .eq('plz', plz);
 
+          setRegion(response.data[0].region);
           const canton = response.data[0].canton;
           setCanton(findCantonAbbreviation(canton));
-
-          const praemienregion = response.data[0].region;
-          if (praemienregion === 0) {
-            setRegion('PR-REG CH0');
-          } else if (praemienregion === 1) {
-            setRegion('PR-REG CH1');
-          } else if (praemienregion === 2) {
-            setRegion('PR-REG CH2');
-          } else if (praemienregion === 3) {
-            setRegion('PR-REG CH3');
-          }
         } catch (error) {
           alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
           console.error('Error fetching data from Supabase: ', error);
@@ -73,24 +78,24 @@ export default function Form() {
           const response = await supabase
             .from('praemien')
             .select(
-              'versicherer, kanton, altersklasse, unfall, tarif, franchisestufe, praemie, region'
+              'versicherer, kanton, altersklasse, unfall, tarif, franchise, praemie, region'
             )
             .eq('kanton', canton)
             .eq('unfall', selectedAccident)
             .eq('altersklasse', selectedAge)
-            .eq('region', region);
+            .eq('franchise', selectedFranchise)
+            .eq('region', praemiendecode(region));
 
-          console.log(region);
-
+          console.log(selectedFranchise);
           setDataset(response.data);
-          console.log(response.data);
+          console.log('Data: ', response.data);
 
           if (response.error) throw response.error;
-
+          const regionCode = praemiendecode(region);
           users.push(response.data);
           emailStore.push(
             `Kanton: ${canton}`,
-            `Region: ${region}`,
+            `Region: ${regionCode}`,
             `PLZ: ${plz}`,
             `Alter: ${selectedAge}`,
             `Franchise: ${selectedFranchise}`,

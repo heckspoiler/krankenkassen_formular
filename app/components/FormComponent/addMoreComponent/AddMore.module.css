@@ -6,7 +6,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3vw;
+    gap: 1vw;
+}
+
+.Main h3 {
+    padding-bottom: 2em;
 }
 
 .Button {
@@ -36,4 +40,15 @@
     scale: 1;
     background-color: var(--lightblue);
     color: white;
+}
+
+.Paragraph {
+    font-size: 0.8em;
+    padding-top: 2em;
+    text-align: center;
+    opacity: 0;
+}
+
+.Visible {
+    opacity: 1;
 }

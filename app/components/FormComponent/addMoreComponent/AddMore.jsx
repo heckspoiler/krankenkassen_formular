@@ -8,7 +8,6 @@ export const AddMore = () => {
 
   const handleAddMore = (e) => {
     setAddMore(e.target.value);
-    console.log(addMore);
   };
 
   return (
@@ -49,6 +48,14 @@ export const AddMore = () => {
       >
         3+
       </button>
+
+      <p
+        className={`${styles.Paragraph} ${addMore !== '0' ? styles.Visible : ''}`}
+      >
+        Die folgenden Offerten beziehen sich lediglich auf eine Person. Angebote
+        für weitere Personen erhalten Sie durch einen Versicherungsbroker.
+        (gennd mer no z'richtiga wording für das)
+      </p>
     </main>
   );
 };
