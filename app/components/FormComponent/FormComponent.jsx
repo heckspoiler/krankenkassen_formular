@@ -10,6 +10,7 @@ import { AddMore } from './addMoreComponent/AddMore';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
 import { plzStore } from '@/utils/stores/plzStore';
+import { weiterStore } from '@/utils/stores/weiterStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
@@ -17,6 +18,7 @@ export const FormComponent = () => {
   const [buttonText, setButtonText] = useState('Weiter');
   const { fetch, setFetch } = useStore(fetchStore);
   const { plz, setPlz } = useStore(plzStore);
+  const { weiter, setWeiter } = useStore(weiterStore);
 
   const topOfForm = useRef(null);
 
@@ -96,7 +98,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 || plz === 0 ? styles.Disabled : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 || !weiter ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}

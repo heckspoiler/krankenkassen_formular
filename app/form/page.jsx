@@ -16,6 +16,7 @@ import { cantonRadioStore } from '@/utils/stores/cantonRadioStore';
 import { currentlyLivingStore } from '@/utils/stores/currentlyLivingStore';
 import { cantonStore } from '@/utils/stores/cantonStore';
 import { cantons } from '../components/FormComponent/Canton/Canton';
+import { weiterStore } from '@/utils/stores/weiterStore';
 
 export const users = [];
 export const emailStore = [];
@@ -32,6 +33,7 @@ export default function Form() {
   const { canton, setCanton } = useStore(cantonStore);
   const { currentlyLiving, setCurrentlyLiving } =
     useStore(currentlyLivingStore);
+  const { weiter, setWeiter } = useStore(weiterStore);
 
   const findCantonAbbreviation = (fullName) => {
     return cantons[fullName];
@@ -64,9 +66,11 @@ export default function Form() {
           setRegion(response.data[0].region);
           const canton = response.data[0].canton;
           setCanton(findCantonAbbreviation(canton));
+          setWeiter(true);
         } catch (error) {
           if (plz.length !== 4) {
             alert('Bitte geben Sie eine gültige PLZ ein.');
+            setWeiter(false);
           } else {
             alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
             console.error('Error fetching data from Supabase: ', error);
