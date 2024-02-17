@@ -2,11 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    console.log('Received data:', req.body); // Log received data to check if the server receives anything
-
     const { subject, to, html } = req.body;
-
-    console.log(req.body.html);
 
     let transporter = nodemailer.createTransport({
       host: 'smtp-mail.outlook.com',

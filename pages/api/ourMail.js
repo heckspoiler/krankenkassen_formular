@@ -2,11 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    console.log('Received data:', req.body);
-
     const { subject, to, html } = req.body;
-
-    console.log(req.body.html);
 
     let transporter = nodemailer.createTransport({
       host: 'smtp-mail.outlook.com',

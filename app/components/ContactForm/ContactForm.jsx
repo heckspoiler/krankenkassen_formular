@@ -46,7 +46,7 @@ export default function ContactForm() {
   const sendUs = async () => {
     const formData = {
       to: email,
-      subject: 'Offerte erhalten',
+      subject: `Anfrage erhalten von ${firstname} ${surname}`,
       html: `
       <p><strong>Von:</strong> ${surname} ${firstname},</p>
       <p><strong>Geburtsdatum:</strong> ${birthday}</p>
