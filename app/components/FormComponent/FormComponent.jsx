@@ -9,12 +9,14 @@ import { OfferList } from '../OfferList/OfferList';
 import { AddMore } from './addMoreComponent/AddMore';
 import { useStore } from 'zustand';
 import { fetchStore } from '@/utils/stores/fetchStore';
+import { plzStore } from '@/utils/stores/plzStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
   const [title, setTitle] = useState('Wohnsituation');
   const [buttonText, setButtonText] = useState('Weiter');
   const { fetch, setFetch } = useStore(fetchStore);
+  const { plz, setPlz } = useStore(plzStore);
 
   const topOfForm = useRef(null);
 
@@ -45,8 +47,8 @@ export const FormComponent = () => {
       const stepTitles = [
         'Wohnsituation',
         'Alterskategorie',
-        'Franchisehöhe',
         'Unfallversicherung',
+        'Franchisehöhe',
         'Weitere Offerten',
         'Angebote',
       ];
@@ -75,8 +77,8 @@ export const FormComponent = () => {
         <div className={styles.MultistepSlider}>
           <Region />
           <Age />
-          <Franchise />
           <Accident />
+          <Franchise />
           <AddMore />
           <div className={styles.OffersContainer}>
             <OfferList isActive={isActive} />
@@ -94,7 +96,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.Disabled : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 || plz === 0 ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}

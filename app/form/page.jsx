@@ -13,6 +13,7 @@ import { fetchStore } from '@/utils/stores/fetchStore';
 import { plzStore } from '@/utils/stores/plzStore';
 import { regionStore } from '@/utils/stores/regionStore';
 import { cantonRadioStore } from '@/utils/stores/cantonRadioStore';
+import { currentlyLivingStore } from '@/utils/stores/currentlyLivingStore';
 import { cantonStore } from '@/utils/stores/cantonStore';
 import { cantons } from '../components/FormComponent/Canton/Canton';
 
@@ -29,6 +30,8 @@ export default function Form() {
   const { cantonRadio, setCantonRadio } = useStore(cantonRadioStore);
   const { region, setRegion } = useStore(regionStore);
   const { canton, setCanton } = useStore(cantonStore);
+  const { currentlyLiving, setCurrentlyLiving } =
+    useStore(currentlyLivingStore);
 
   const findCantonAbbreviation = (fullName) => {
     return cantons[fullName];
@@ -62,8 +65,12 @@ export default function Form() {
           const canton = response.data[0].canton;
           setCanton(findCantonAbbreviation(canton));
         } catch (error) {
-          alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
-          console.error('Error fetching data from Supabase: ', error);
+          if (plz.length !== 4) {
+            alert('Bitte geben Sie eine gültige PLZ ein.');
+          } else {
+            alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
+            console.error('Error fetching data from Supabase: ', error);
+          }
         }
       }
 
@@ -86,14 +93,14 @@ export default function Form() {
             .eq('franchise', selectedFranchise)
             .eq('region', praemiendecode(region));
 
-          console.log(selectedFranchise);
           setDataset(response.data);
-          console.log('Data: ', response.data);
 
           if (response.error) throw response.error;
           const regionCode = praemiendecode(region);
           users.push(response.data);
           emailStore.push(
+            `Wohnhaft Schweiz: ${currentlyLiving}`,
+            `Wohnhaft Kanton: ${cantonRadio}`,
             `Kanton: ${canton}`,
             `Region: ${regionCode}`,
             `PLZ: ${plz}`,

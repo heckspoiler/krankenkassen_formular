@@ -38,7 +38,9 @@ export function OfferList() {
               <div key={index} className={styles.Offer}>
                 <div className={styles.TextContainer}>
                   <h3 className={styles.OfferTitle}>{versichererName}</h3>
-                  <p className={styles.OfferText}>{offer.tarif}</p>
+                  <p className={styles.OfferText}>
+                    Offerte: <strong>{offer.tarif}</strong>
+                  </p>
                 </div>
                 <div className={styles.TextContainer}>
                   <p className={styles.PraemieText}>{formattedPraemie}</p>
