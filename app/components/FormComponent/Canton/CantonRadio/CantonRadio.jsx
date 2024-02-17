@@ -13,7 +13,7 @@ export const CantonRadio = () => {
 
   return (
     <section className={styles.Main}>
-      <p>Sind Sie kürzlich in diesen Kanton umgezogen?</p>
+      <p>Möchten Sie eine Offerte für Ihren aktuellen Wohnsitz?</p>
       <div className={styles.ButtonContainer}>
         <button
           value="Ja"

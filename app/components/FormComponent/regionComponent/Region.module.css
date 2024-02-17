@@ -7,15 +7,24 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    gap: 10vh;
+    gap: 5em;
 
 }
 
-.Main input {
+.PLZContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
 
+.Main input {
     background-color: var(--background-grey);
     padding: 1vw 0.7vw;
-    width: 20vw;
+    width: 10vw;
+    text-align: center;
 }
 
 .Main input:focus {

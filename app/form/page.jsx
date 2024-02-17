@@ -5,7 +5,6 @@ import { FormComponent } from '../components/FormComponent/FormComponent';
 import supabase from '../../utils/supabase';
 import styles from './Form.module.css';
 import { useStore } from 'zustand';
-import { cantonStore } from '@/utils/stores/cantonStore';
 import { datasetStore } from '@/utils/stores/datasetStore';
 import { ageStore } from '@/utils/stores/ageStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
@@ -13,53 +12,69 @@ import { accidentStore } from '@/utils/stores/accidentStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
 import { plzStore } from '@/utils/stores/plzStore';
 import { regionStore } from '@/utils/stores/regionStore';
-import { singleCanton } from '@/utils/stores/cantonArray';
+import { cantonRadioStore } from '@/utils/stores/cantonRadioStore';
+import { currentlyLivingStore } from '@/utils/stores/currentlyLivingStore';
+import { cantonStore } from '@/utils/stores/cantonStore';
+import { cantons } from '../components/FormComponent/Canton/Canton';
+import { weiterStore } from '@/utils/stores/weiterStore';
 
 export const users = [];
 export const emailStore = [];
 
 export default function Form() {
-  const selectedCanton = useStore(cantonStore);
-  const canton = selectedCanton.canton;
-  const dataset = useStore(datasetStore);
-  const setDataset = useStore(datasetStore).setDataset;
+  const { dataset, setDataset } = useStore(datasetStore);
   const selectedAge = useStore(ageStore).age;
   const selectedFranchise = useStore(franchiseStore).franchise;
   const selectedAccident = useStore(accidentStore).accident;
-  const isFetching = useStore(fetchStore).fetch;
+  const fetch = useStore(fetchStore).fetch;
   const plz = useStore(plzStore).plz;
+  const { cantonRadio, setCantonRadio } = useStore(cantonRadioStore);
   const { region, setRegion } = useStore(regionStore);
+  const { canton, setCanton } = useStore(cantonStore);
+  const { currentlyLiving, setCurrentlyLiving } =
+    useStore(currentlyLivingStore);
+  const { weiter, setWeiter } = useStore(weiterStore);
+
+  const findCantonAbbreviation = (fullName) => {
+    return cantons[fullName];
+  };
+
+  const praemiendecode = function (praemienregion) {
+    switch (praemienregion) {
+      case '0':
+        return 'PR-REG CH0';
+      case '1':
+        return 'PR-REG CH1';
+      case '2':
+        return 'PR-REG CH2';
+      case '3':
+        return 'PR-REG CH3';
+      default:
+        return '';
+    }
+  };
 
   useEffect(() => {
     if (plz !== 0) {
       async function fetchRegion() {
         try {
           const response = await supabase
-            .from('regions')
-            .select('plz, praemienregion')
+            .from('regionsfinal')
+            .select('canton, plz, region')
             .eq('plz', plz);
 
-          if (singleCanton.includes(canton)) {
-            setRegion('PR-REG CH0');
-          } else if (
-            !singleCanton.includes(canton) &&
-            response.data[0].praemienregion !== 2 &&
-            response.data[0].praemienregion !== 3
-          ) {
-            setRegion('PR-REG CH1');
-          } else if (response.data[0].praemienregion === 2) {
-            setRegion('PR-REG CH2');
-          } else {
-            setRegion('PR-REG CH3');
-          }
-
-          console.log('Region: ', region);
-          console.log('Canton: ', canton);
+          setRegion(response.data[0].region);
+          const canton = response.data[0].canton;
+          setCanton(findCantonAbbreviation(canton));
+          setWeiter(true);
         } catch (error) {
-          alert(
-            'Diese Postleitzahl konnte leider nicht in diesem Kanton gefunden werden. Bitte versuchen Sie es erneut.'
-          );
-          console.error('Error fetching data from Supabase: ', error);
+          if (plz.length !== 4) {
+            alert('Bitte geben Sie eine gültige PLZ ein.');
+            setWeiter(false);
+          } else {
+            alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
+            console.error('Error fetching data from Supabase: ', error);
+          }
         }
       }
 
@@ -68,41 +83,44 @@ export default function Form() {
   }, [plz]);
 
   useEffect(() => {
-    if (isFetching) {
+    if (fetch) {
       async function fetchData() {
         try {
           const response = await supabase
             .from('praemien')
             .select(
-              'versicherer, kanton, region, altersklasse, unfall, tarif, franchisestufe, franchise, praemie'
+              'versicherer, kanton, altersklasse, unfall, tarif, franchise, praemie, region'
             )
             .eq('kanton', canton)
-            .eq('region', region)
+            .eq('unfall', selectedAccident)
             .eq('altersklasse', selectedAge)
             .eq('franchise', selectedFranchise)
-            .eq('unfall', selectedAccident);
-
-          if (response.error) throw response.error;
+            .eq('region', praemiendecode(region));
 
           setDataset(response.data);
+
+          if (response.error) throw response.error;
+          const regionCode = praemiendecode(region);
           users.push(response.data);
           emailStore.push(
-            canton,
-            region,
-            plz,
-            selectedAge,
-            selectedFranchise,
-            selectedAccident
+            `Wohnhaft Schweiz: ${currentlyLiving}`,
+            `Wohnhaft Kanton: ${cantonRadio}`,
+            `Kanton: ${canton}`,
+            `Region: ${regionCode}`,
+            `PLZ: ${plz}`,
+            `Alter: ${selectedAge}`,
+            `Franchise: ${selectedFranchise}`,
+            `Unfalldeckung: ${selectedAccident}`,
+            `Kanton-Radio: ${cantonRadio}`
           );
           console.log('Email Store: ', emailStore);
         } catch (error) {
           console.error('Error fetching data from Supabase: ', error);
         }
       }
-
       fetchData();
     }
-  }, [isFetching]);
+  }, [fetch]);
 
   return (
     <main className={styles.Main}>
