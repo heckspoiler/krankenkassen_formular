@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import styles from './ContactForm.module.css';
 import { useStore, getState } from 'zustand';
@@ -36,16 +37,70 @@ export default function ContactForm() {
     setShowForm(!showForm);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    formInformation.push({
-      surname,
-      firstname,
-      email,
-      birthday,
-      phone,
-      text,
-    });
+    await sendCustomer();
+    await sendUs();
+  };
+
+  const sendUs = async () => {
+    const formData = {
+      to: email,
+      subject: 'Offerte erhalten',
+      html: `
+      <p><strong>Von:</strong> ${surname} ${firstname},</p>
+      <p><strong>Geburtsdatum:</strong> ${birthday}</p>
+      <p><strong>Mail:</strong> ${email}</p>
+      <p><strong>Telefon:</strong> ${phone}</p>
+      <p><strong>Nachricht:</strong> ${text}</p>`,
+    };
+    try {
+      const response = await fetch('/api/ourMail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email', error);
+    }
+  };
+
+  const sendCustomer = async () => {
+    const formData = {
+      to: email,
+      subject: 'Offerte',
+      html: `<h2>Ihre persönliche Offerte</h2>
+      <p>Sehr geehrte/r ${surname} ${firstname},</p>
+      <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden.</p>
+      <p>Freundliche Grüsse</p>
+      <p>Ihr Krankenkassenvergleich Team</p>`,
+    };
+
+    try {
+      const response = await fetch('/api/customerMail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email', error);
+    }
   };
 
   return (
@@ -56,7 +111,7 @@ export default function ContactForm() {
           <div></div>
         </div>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2 className={styles.Title}>Erhalten Sie Ihre Offerte</h2>
         <p>
           Wir werden Ihre Anliegen vertraulich behandeln und die gewünschte
@@ -131,7 +186,7 @@ export default function ContactForm() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button type="submit" className={styles.Button}>
+        <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen
         </button>
       </form>
