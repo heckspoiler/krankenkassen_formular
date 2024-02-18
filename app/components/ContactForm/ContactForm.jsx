@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import styles from './ContactForm.module.css';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
+import { contactFormStore } from '@/utils/stores/contactStore';
 import dynamic from 'next/dynamic';
 import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
@@ -16,7 +16,7 @@ const PhoneInput = dynamic(() => import('react-phone-number-input'), {
 export const formInformation = [];
 
 export default function ContactForm() {
-  const [showForm, setShowForm] = useState(false);
+  const { showForm, setShowForm } = useStore(contactFormStore);
 
   const {
     surname,
@@ -33,7 +33,7 @@ export default function ContactForm() {
     setText,
   } = useStore(formStore);
 
-  const showFormClick = () => {
+  const hideFormClick = () => {
     setShowForm(!showForm);
   };
 
@@ -105,7 +105,7 @@ export default function ContactForm() {
 
   return (
     <section className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
-      <div className={styles.CrossContainer} onClick={showFormClick}>
+      <div className={styles.CrossContainer} onClick={hideFormClick}>
         <div className={styles.Cross}>
           <div></div>
           <div></div>
@@ -128,7 +128,7 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="firstnameeeeee">Vorname</label>
+          <label htmlFor="firstname">Vorname</label>
           <input
             type="text"
             value={firstname}

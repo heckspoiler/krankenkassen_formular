@@ -17,8 +17,10 @@ export function OfferList({ isActive, setIsActive }) {
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
   );
 
-  const showFormClick = () => {
+  const showFormClick = (e) => {
+    e.preventDefault();
     !showForm ? setShowForm(true) : setShowForm(false);
+    console.log('showForm', showForm);
   };
 
   const anotherFranchise = () => {
