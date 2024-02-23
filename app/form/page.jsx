@@ -69,7 +69,9 @@ export default function Form() {
           setWeiter(true);
         } catch (error) {
           if (plz.length !== 4) {
-            alert('Bitte geben Sie eine gültige PLZ ein.');
+            alert(
+              'Bitte geben Sie eine gültige PLZ ein. Wohlmöglich müssen Sie die Hauptpostleitzahl Ihrer Gemeinde eingeben oder etwas spezifischer sein. Beispielsweise reicht 8000 nicht, um in Zürich die Region ausfindig zu machen. Analog sollten Sie in Chur anstelle von 7002 lediglich den Wert 7000 eintragen, da gewisse Gemeinden nur eine Prämienregion haben.'
+            );
             setWeiter(false);
           } else {
             alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
