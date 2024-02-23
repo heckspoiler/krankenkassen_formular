@@ -1,15 +1,13 @@
 .Main {
-    width: 60vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
-
-
 }
 
 .OfferList {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.8vw;
+    gap: calc(1em + 0.8vw);
 }
 
 .Offer {
@@ -46,6 +44,7 @@
 .PraemieText {
     font-weight: bold;
     font-size: 1.4em;
+    text-decoration: underline;
 }
 
 .Button {
