@@ -1,7 +1,7 @@
 'use client';
 
-
 import styles from './ContactForm.module.css';
+import { useState } from 'react';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
 import { contactFormStore } from '@/utils/stores/contactStore';
@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { offerStore } from '@/utils/stores/offerStore';
+import { SuccessAnimation } from './SuccessAnimation/SuccessAnimation';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -19,7 +20,8 @@ export const formInformation = [];
 
 export default function ContactForm() {
   const { showForm, setShowForm } = useStore(contactFormStore);
-  const {versicherung, praemie, tarif} = useStore(offerStore)
+  const { versicherung, praemie, tarif } = useStore(offerStore);
+  const [isActive, setIsActive] = useState(false);
 
   const {
     surname,
@@ -42,6 +44,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsActive(true);
     await sendCustomer();
     await sendUs();
   };
@@ -66,7 +69,6 @@ export default function ContactForm() {
       <p><strong>Tarif:</strong> ${tarif}</p>
       <p><strong>Prämie:</strong> ${praemie}</p>
      `,
-      
     };
     try {
       const response = await fetch('/api/ourMail', {
@@ -203,6 +205,7 @@ export default function ContactForm() {
         <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen
         </button>
+        <SuccessAnimation isActive={isActive} />
       </form>
     </section>
   );
