@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     try {
       await transporter.sendMail({
         from: process.env.EMAIL,
-        to: 'carlo_ettisberger@hotmail.com',
+        to: provess.env.EMAIL,
         subject: subject,
         html: html,
       });
