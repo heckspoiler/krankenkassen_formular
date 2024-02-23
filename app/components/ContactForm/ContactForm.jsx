@@ -46,11 +46,11 @@ export default function ContactForm() {
     await sendUs();
   };
 
-  const formattedBirthday = birthday.toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
+  // const formattedBirthday = birthday.toLocaleDateString('de-DE', {
+  //   day: '2-digit',
+  //   month: '2-digit',
+  //   year: 'numeric',
+  // });
 
   const sendUs = async () => {
     const formData = {
@@ -58,7 +58,7 @@ export default function ContactForm() {
       subject: `Anfrage erhalten von ${firstname} ${surname}`,
       html: `
       <p><strong>Von:</strong> ${surname} ${firstname},</p>
-      <p><strong>Geburtsdatum:</strong> ${formattedBirthday}</p>
+      <p><strong>Geburtsdatum:</strong> ${birthday}</p>
       <p><strong>Mail:</strong> ${email}</p>
       <p><strong>Telefon:</strong> ${phone}</p> 
       <p><strong>Nachricht:</strong> ${text}</p>
