@@ -86,7 +86,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 20vw !important;
+    max-width: 40vw !important;
 }
 
 .PhoneInput * {
@@ -122,8 +122,8 @@
 
 
 .CrossContainer {
-    height: 1.8vw;
-    width: 1.8vw;
+    height: calc(1vw + 1.2em);
+    width: calc(1vw + 1.2em);
     position: absolute;
     top: 3vh;
     right: 0;
