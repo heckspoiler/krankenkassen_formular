@@ -1,5 +1,5 @@
 .Main {
-    width: 30vw;
+    width: 60vw;
     transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
     transition-delay: 0.3s;
     display: flex;
@@ -15,7 +15,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 1vw;
     column-gap: 1vw;
-    width: 30vw;
+    width: 60vw;
     padding: 0 2vw;
 
 }

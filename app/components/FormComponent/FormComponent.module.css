@@ -27,7 +27,7 @@
 
 .OffersContainer {
     height: auto;
-    width: 30vw;
+    width: 60vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }
