@@ -10,7 +10,7 @@
 
 .Multistep {
     position: relative;
-    width: 30vw;
+    width: 60vw;
     overflow: hidden;
 
 }
@@ -18,7 +18,7 @@
 .MultistepSlider {
     display: flex;
     flex-direction: row;
-    width: 180vw;
+    width: 360vw;
     transition: transform 0.6s ease-in-out;
     transition-delay: 0.1s;
     height: 60vh;
