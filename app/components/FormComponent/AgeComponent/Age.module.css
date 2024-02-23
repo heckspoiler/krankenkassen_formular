@@ -15,16 +15,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3vw;
+    gap: calc(1vw + 2em);
 }
 
 .Button {
 
-    padding: 1.2vw 2.8vw;
+    padding: calc(1vh + 1em) calc(1vw + 2em);
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
-    font-size: calc(0.5em + 0.5vw);
+    font-size: calc(0.8em + 0.2vw);
 
 
 }
