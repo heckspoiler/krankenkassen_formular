@@ -42,9 +42,10 @@
 .Paragraph {
     font-size: 0.7em;
     padding-top: 2em;
-    text-align: justify;
+    text-align: center;
     opacity: 0;
     width: 80%;
+
 }
 
 .Visible {
