@@ -45,7 +45,7 @@
 .Main textarea {
     background-color: var(--background-grey);
     padding: 0.7vw;
-    width: 20vw;
+    width: 40vw;
 }
 
 .Main label {
@@ -71,7 +71,7 @@
 }
 
 .FormGroup label {
-    width: 6vw;
+    width: calc(4em + 3vw);
 }
 
 
@@ -98,7 +98,6 @@
     color: red;
     font-size: 0.8em;
     padding-left: 3px;
-
 }
 
 
