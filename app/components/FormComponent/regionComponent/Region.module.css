@@ -17,14 +17,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1vw;
+    gap: calc(1vw + 1em);
 }
 
 .Main input {
     background-color: var(--background-grey);
     padding: 1vw 0.7vw;
-    width: 10vw;
-    min-width: 6em;
+    width: calc(6em + 6vw);
     text-align: center;
 }
 
