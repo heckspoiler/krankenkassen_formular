@@ -20,7 +20,7 @@
 
 .Button {
 
-    padding: 1.2vw 0;
+    padding: calc(1vh + 1em) calc(1vw + 2em);
     transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
