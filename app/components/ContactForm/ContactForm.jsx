@@ -98,11 +98,31 @@ export default function ContactForm() {
     const formData = {
       to: email,
       subject: 'Offerte',
-      html: `<h2>Ihre persönliche Offerte</h2>
-      <p>Sehr geehrte/r ${surname} ${firstname},</p>
-      <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden.</p>
-      <p>Freundliche Grüsse</p>
-      <p>Ihr Krankenkassenvergleich Team</p>`,
+      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Arial', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+      <tr>
+        <td style="background-color: white; padding: 20px; text-align: center;">
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/01/logologo-e1708288289213.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
+          <h2 style="color: #54a4db; font-size: 24px; margin-top: 20px;">Ihre persönliche Offerte</h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #ffffff; padding: 20px; color: #333; font-size: 16px;">
+          <p>Guten Tag ${firstname} ${surname},</p>
+          <p>vielen Dank für Ihr Interesse an unseren Dienstleistungen. Wir freuen uns, Ihnen bei der Suche nach der optimalen Krankenversicherung behilflich sein zu dürfen.</p>
+          <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden, um Ihre individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
+          <p>In der Zwischenzeit können Sie gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen, falls Sie Fragen haben.</p>
+          <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
+          <p>Freundliche Grüsse,</p>
+          <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #54a4db; padding: 20px; text-align: center;">
+          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folgen Sie uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
+        </td>
+      </tr>
+    </table>
+    `,
     };
 
     try {
