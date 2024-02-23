@@ -7,18 +7,25 @@ import { datasetStore } from '@/utils/stores/datasetStore';
 import { contactFormStore } from '@/utils/stores/contactStore';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
+import { offerStore } from '@/utils/stores/offerStore';
 
 export function OfferList({ isActive, setIsActive }) {
   const dataset = useStore(datasetStore).dataset;
   const { showForm, setShowForm } = useStore(contactFormStore);
   const { fetch, setFetch } = useStore(fetchStore);
+  const {versicherung, praemie, tarif, setOffer} = useStore(offerStore)
 
   const sortedDataset = [...dataset].sort(
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
   );
 
-  const showFormClick = () => {
-    !showForm ? setShowForm(true) : setShowForm(false);
+  const showFormClick = (offer) => {
+    setShowForm(!showForm); 
+    const formattedPraemie = parseFloat(offer.praemie).toFixed(2);
+    let versichererName = offer.versicherer.replace('�KK', 'ÖKK');
+    versichererName = versichererName    
+    setOffer(versichererName, formattedPraemie, offer.tarif);
+    console.log(versicherung, praemie, tarif)
   };
 
   const anotherFranchise = () => {
@@ -43,15 +50,16 @@ export function OfferList({ isActive, setIsActive }) {
 
           return (
             <div>
-              <div key={index} className={styles.Offer}>
+              <div key={offer.tarif} className={styles.Offer}>
                 <div className={styles.TextContainer}>
                   <h3 className={styles.OfferTitle}>{versichererName}</h3>
                   <p className={styles.OfferText}>
                     Tarif für: <strong>{offer.tarif}</strong>
                   </p>
                   <button
+                  
                     className={styles.FranchiseButton}
-                    key={index}
+                    key={offer.tarif}
                     name={offer.tarif}
                     onClick={anotherFranchise}
                   >
@@ -62,9 +70,9 @@ export function OfferList({ isActive, setIsActive }) {
                   <p className={styles.PraemieText}>{formattedPraemie}</p>
                   <button
                     className={styles.Button}
-                    key={index}
+                    key={offer.tarif}
                     name={offer.tarif}
-                    onClick={showFormClick}
+                    onClick={() => showFormClick(offer)}
                   >
                     Offerte einholen
                   </button>

@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+
 import styles from './ContactForm.module.css';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
+import { contactFormStore } from '@/utils/stores/contactStore';
 import dynamic from 'next/dynamic';
 import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import { offerStore } from '@/utils/stores/offerStore';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -16,7 +18,8 @@ const PhoneInput = dynamic(() => import('react-phone-number-input'), {
 export const formInformation = [];
 
 export default function ContactForm() {
-  const [showForm, setShowForm] = useState(false);
+  const { showForm, setShowForm } = useStore(contactFormStore);
+  const {versicherung, praemie, tarif} = useStore(offerStore)
 
   const {
     surname,
@@ -43,16 +46,27 @@ export default function ContactForm() {
     await sendUs();
   };
 
+  const formattedBirthday = birthday.toLocaleDateString('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+
   const sendUs = async () => {
     const formData = {
       to: email,
       subject: `Anfrage erhalten von ${firstname} ${surname}`,
       html: `
       <p><strong>Von:</strong> ${surname} ${firstname},</p>
-      <p><strong>Geburtsdatum:</strong> ${birthday}</p>
+      <p><strong>Geburtsdatum:</strong> ${formattedBirthday}</p>
       <p><strong>Mail:</strong> ${email}</p>
-      <p><strong>Telefon:</strong> ${phone}</p>
-      <p><strong>Nachricht:</strong> ${text}</p>`,
+      <p><strong>Telefon:</strong> ${phone}</p> 
+      <p><strong>Nachricht:</strong> ${text}</p>
+      <p><strong>Versicherer:</strong> ${versicherung}</p>
+      <p><strong>Tarif:</strong> ${tarif}</p>
+      <p><strong>Prämie:</strong> ${praemie}</p>
+     `,
+      
     };
     try {
       const response = await fetch('/api/ourMail', {
