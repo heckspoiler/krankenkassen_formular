@@ -5,14 +5,15 @@ export default async function handler(req, res) {
     const { subject, to, html } = req.body;
 
     let transporter = nodemailer.createTransport({
-      host: 'smtp-mail.outlook.com',
-      port: 587,
+      host: 'www19.servertown.ch',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
       },
       tls: {
-        ciphers: 'SSLv3',
+        rejectUnauthorized: false,
       },
     });
 
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
     try {
       await transporter.sendMail({
         from: process.env.EMAIL,
-        to: 'carlo_ettisberger@hotmail.com',
+        to: process.env.EMAIL,
         subject: subject,
         html: html,
       });
