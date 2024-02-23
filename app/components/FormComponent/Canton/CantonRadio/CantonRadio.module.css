@@ -19,10 +19,10 @@
 
 .Button {
     background-color: var(--background-grey);
-    width: 4vw;
-    padding: 0.5vw 0;
+    min-width: 4.5em;
+    padding: 1.4vh 0;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .Button:hover {
