@@ -24,6 +24,7 @@
     background-color: var(--background-grey);
     padding: 1vw 0.7vw;
     width: 10vw;
+    min-width: 6em;
     text-align: center;
 }
 
