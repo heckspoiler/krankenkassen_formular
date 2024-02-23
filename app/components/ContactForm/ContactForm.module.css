@@ -94,7 +94,12 @@
 
 }
 
+.required {
+    color: red;
+    font-size: 0.8em;
+    padding-left: 3px;
 
+}
 
 
 

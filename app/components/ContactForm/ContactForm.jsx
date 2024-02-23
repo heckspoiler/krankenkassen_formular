@@ -44,9 +44,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsActive(true);
-    await sendCustomer();
-    await sendUs();
+
+    if (surname === '' || firstname === '' || email === '' || phone === '') {
+      alert('Füllen Sie bitte alle Felder aus. ');
+    } else {
+      setIsActive(true);
+      await sendCustomer();
+      await sendUs();
+    }
   };
 
   // const formattedBirthday = birthday.toLocaleDateString('de-DE', {
@@ -135,7 +140,9 @@ export default function ContactForm() {
           informieren.
         </p>
         <div className={styles.FormGroup}>
-          <label htmlFor="surname">Nachname</label>
+          <label htmlFor="surname">
+            Nachname<span className={styles.required}>*</span>
+          </label>
           <input
             type="text"
             value={surname}
@@ -144,7 +151,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="firstnameeeeee">Vorname</label>
+          <label htmlFor="firstnameeeeee">
+            Vorname<span className={styles.required}>*</span>
+          </label>
           <input
             type="text"
             value={firstname}
@@ -153,7 +162,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="birthday">Geburtsdatum</label>
+          <label htmlFor="birthday">
+            Geburtsdatum<span className={styles.required}>*</span>
+          </label>
 
           <DatePicker
             className={styles.DatePicker}
@@ -170,7 +181,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="email">E-Mail</label>
+          <label htmlFor="email">
+            E-Mail<span className={styles.required}>*</span>
+          </label>
           <input
             type="email"
             id="email"
@@ -181,7 +194,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="phoneinput">Telefon</label>
+          <label htmlFor="phoneinput">
+            Telefon<span className={styles.required}>*</span>
+          </label>
           <div className={styles.PhoneInputContainer}>
             <PhoneInput
               className={styles.PhoneInput}
