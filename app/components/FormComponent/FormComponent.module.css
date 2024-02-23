@@ -65,7 +65,7 @@
 
 .AdvanceButton {
     background-color: var(--background-grey);
-    padding: calc(0.8em + 0.4vh) calc(1em + 0.8vw);
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     background-color: rgb(232, 232, 232);
     transition: scale 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out, width 0.2s ease-in;
 }
