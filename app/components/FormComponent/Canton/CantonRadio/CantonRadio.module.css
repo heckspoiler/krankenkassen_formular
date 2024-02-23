@@ -20,7 +20,7 @@
 .Button {
     background-color: var(--background-grey);
     min-width: 4.5em;
-    padding: 1.4vh 0;
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
 
 }

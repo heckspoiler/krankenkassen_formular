@@ -15,8 +15,9 @@
 
 .Button {
 
-    width: 6vw;
-    height: 3vw;
+    width: calc(4em + 2vw);
+    height: calc(2em + 2vh);
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
