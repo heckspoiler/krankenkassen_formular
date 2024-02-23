@@ -28,7 +28,7 @@
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
-    font-size: calc(0.4em + 0.6vw);
+
 }
 
 .Button:hover {
