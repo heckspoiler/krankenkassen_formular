@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     let transporter = nodemailer.createTransport({
       host: 'www19.servertown.ch',
       port: 465,
-      secure: true,
+      secure: true, // do not change
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
