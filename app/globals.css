@@ -43,13 +43,18 @@ button {
 @media screen and (max-width:762px) {
   p {
     font-size: 0.8em;
+    text-align: center;
   }
 
   button {
     font-size: 0.8em;
   }
 
-  input {
-    font-size: 0.8em;
+  h3 {
+    text-align: center;
   }
+
+
+
+
 }

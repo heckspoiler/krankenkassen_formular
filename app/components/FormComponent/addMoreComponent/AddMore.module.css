@@ -45,9 +45,69 @@
     text-align: center;
     opacity: 0;
     width: 80%;
-
 }
 
 .Visible {
     opacity: 1;
+}
+
+
+
+
+@media screen and (max-width:762px) {
+
+    .Main {
+        padding: 1vw;
+        height: 100%;
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: calc(0.2em + 0.4vh);
+    }
+
+    .Main h3 {
+        padding-bottom: 1em;
+    }
+
+    .Button {
+
+        width: calc(5em + 2vw);
+        height: calc(2.5em + 2vh);
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+        background-color: var(--background-grey);
+        outline: none;
+    }
+
+    .Button:hover {
+        scale: 1.02;
+        background-color: var(--lightblue);
+        color: white;
+    }
+
+    .Button:active {
+        scale: 1;
+        background-color: white;
+    }
+
+    .Active {
+        scale: 1;
+        background-color: var(--lightblue);
+        color: white;
+    }
+
+    .Paragraph {
+        font-size: 0.7em;
+        padding-top: 2em;
+        text-align: center;
+        opacity: 0;
+        width: 80%;
+
+    }
+
+    .Visible {
+        opacity: 1;
+    }
+
 }
