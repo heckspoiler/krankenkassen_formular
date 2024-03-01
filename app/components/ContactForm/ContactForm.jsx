@@ -20,8 +20,7 @@ export const formInformation = [];
 
 export default function ContactForm() {
   const { showForm, setShowForm } = useStore(contactFormStore);
-  const { versicherung, praemie, tarif } = useStore(offerStore);
-  const [isActive, setIsActive] = useState(false);
+
 
   const {
     surname,
@@ -38,7 +37,7 @@ export default function ContactForm() {
     setText,
   } = useStore(formStore);
 
-  const showFormClick = () => {
+  const hideFormClick = () => {
     setShowForm(!showForm);
   };
 
@@ -146,7 +145,7 @@ export default function ContactForm() {
 
   return (
     <section className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
-      <div className={styles.CrossContainer} onClick={showFormClick}>
+      <div className={styles.CrossContainer} onClick={hideFormClick}>
         <div className={styles.Cross}>
           <div></div>
           <div></div>
@@ -170,10 +169,8 @@ export default function ContactForm() {
             required
           />
         </div>
-        <div className={styles.FormGroup}>
-          <label htmlFor="firstnameeeeee">
-            Vorname<span className={styles.required}>*</span>
-          </label>
+    <div className={styles.FormGroup}>
+          <label htmlFor="firstname">Vorname</label>
           <input
             type="text"
             value={firstname}

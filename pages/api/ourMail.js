@@ -28,6 +28,7 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: process.env.EMAIL,
         to: process.env.EMAIL,
+
         subject: subject,
         html: html,
       });
