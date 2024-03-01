@@ -7,11 +7,12 @@
   --background-grey: rgb(247, 246, 246);
   --background-grey-darker: rgb(203, 203, 203);
   --font-black: rgb(52, 52, 52);
-  --blue: #8AAAE5;
-  --lightblue: #54a4db;
+  --blue: rgb(163, 3, 57);
+  /* --lightblue: #54a4db; */
+  --lightblue: rgba(113, 0, 38, 1);
   /* --green: #CCF381; */
   --font: Helvetica, sans-serif;
-  --lightblueold: rgba(10, 251, 223, 0.736);
+  --lightblueold: rgba(113, 0, 38, 1);
 
 }
 
