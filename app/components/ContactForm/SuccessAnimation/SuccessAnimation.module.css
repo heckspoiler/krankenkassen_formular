@@ -1,6 +1,6 @@
 .Main {
-    height: 90%;
-    width: 80vw;
+    height: 100%;
+    width: 100vw;
     position: absolute;
     background-color: white;
     opacity: 0;
@@ -25,16 +25,15 @@
     transition: opacity 0.3s linear 0.7s;
 }
 
-.para {
+.Para {
     opacity: 0;
     transition: opacity 0.3s linear 0.7s;
+    font-size: 1em;
 }
 
 .TitleVisible {
     opacity: 1
 }
-
-
 
 .successAnimation {
     margin: 150px auto;

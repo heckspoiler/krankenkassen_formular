@@ -92,11 +92,11 @@ export default function ContactForm() {
     const formData = {
       to: email,
       subject: 'Offerte',
-      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Arial', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Helvetica', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
       <tr>
         <td style="background-color: white; padding: 20px; text-align: center;">
-          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/01/logologo-e1708288289213.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
-          <h2 style="color: #54a4db; font-size: 24px; margin-top: 20px;">Ihre persönliche Offerte</h2>
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/logo-kk-1536x488.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
+          <h2 style="color: rgba(113, 0, 38, 1); font-size: 24px; margin-top: 20px;">Deine persönliche Offerte</h2>
         </td>
       </tr>
       <tr>
@@ -111,7 +111,7 @@ export default function ContactForm() {
         </td>
       </tr>
       <tr>
-        <td style="background-color: #54a4db; padding: 20px; text-align: center;">
+        <td style="background-color: rgba(113, 0, 38, 1); padding: 20px; text-align: center;">
           <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folgen Sie uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
         </td>
       </tr>

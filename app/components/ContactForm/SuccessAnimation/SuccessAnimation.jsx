@@ -31,8 +31,8 @@ export const SuccessAnimation = ({ isActive }) => {
       <h2 className={`${styles.Title} ${isActive ? styles.TitleVisible : ''}`}>
         Anfrage übermittelt!
       </h2>
-      <p className={`${styles.para} ${isActive ? styles.TitleVisible : ''}`}>
-        Sie erhalten in Kürze eine Bestätigungsmail.
+      <p className={`${styles.Para} ${isActive ? styles.TitleVisible : ''}`}>
+        Du erhältst in Kürze eine Bestätigungsmail!
       </p>
     </div>
   );
