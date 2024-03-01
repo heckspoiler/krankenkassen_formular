@@ -39,3 +39,13 @@ body {
 button {
   font-size: calc(0.95em + 0.2vw);
 }
+
+@media screen and (max-width:762px) {
+  p {
+    font-size: 0.8em;
+  }
+
+  button {
+    font-size: 0.8em;
+  }
+}
