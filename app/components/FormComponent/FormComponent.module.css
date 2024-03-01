@@ -58,6 +58,7 @@
 
 .LowerContainer {
     width: 100%;
+    max-width: 60vw;
     display: flex;
     align-items: center;
     padding-top: 4vw;
