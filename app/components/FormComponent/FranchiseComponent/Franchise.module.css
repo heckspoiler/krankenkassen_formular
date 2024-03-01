@@ -48,14 +48,27 @@
 @media screen and (max-width:762px) {
     .Main {
 
-        gap: calc(1vw + 1em);
+        gap: calc(0vw + 0.5em);
+    }
+
+    .FranchiseContainer {
+        width: 60vw;
+        height: 75%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(0vw + 0.2em);
+
     }
 
 
+
     .Button {
-
-        width: 100%;
-
+        padding: calc(0.7em + 0.4vh) 0;
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
+        background-color: var(--background-grey);
+        outline: none;
+        width: 80%;
+        margin: auto;
     }
 
     .Button:hover {
