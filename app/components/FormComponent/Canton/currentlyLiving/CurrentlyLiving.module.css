@@ -61,7 +61,11 @@
         min-width: 4.5em;
         padding: calc(0.4em + 0.4vh) calc(0.8em + 0.8vw);
         transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
+    }
 
+    .Active {
+        background-color: var(--lightblue);
+        color: white;
     }
 
 }
