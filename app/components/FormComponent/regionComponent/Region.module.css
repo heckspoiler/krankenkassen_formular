@@ -7,7 +7,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    gap: 5em;
+    gap: calc(1em + 3vh);
 
 }
 
