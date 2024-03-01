@@ -59,7 +59,6 @@
 .LowerContainer {
     width: 100%;
     max-width: 60vw;
-    background-color: red;
     display: flex;
     align-items: center;
     padding-top: calc(2em + 2vw);
