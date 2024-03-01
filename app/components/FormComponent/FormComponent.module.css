@@ -59,11 +59,12 @@
 .LowerContainer {
     width: 100%;
     max-width: 60vw;
+    background-color: red;
     display: flex;
     align-items: center;
-    padding-top: 4vw;
+    padding-top: calc(2em + 2vw);
     justify-content: space-between;
-    align-self: flex-end;
+    align-self: center;
 
 }
 
