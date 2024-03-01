@@ -239,7 +239,7 @@
     }
 
     .FormGroup {
-        gap: 0.5em;
+        gap: 0.1em;
         flex-direction: column;
     }
 
