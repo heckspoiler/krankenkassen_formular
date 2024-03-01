@@ -59,7 +59,7 @@
 
     .Button {
 
-        padding: calc(1vh + 0.8em) calc(1vw + 1.2em);
+        padding: calc(1vh + 0.8em) calc(2vw + 2.2em);
         transition: scale 0.3s ease-in, background-color 0.2s ease-in;
         background-color: var(--background-grey);
         outline: none;
