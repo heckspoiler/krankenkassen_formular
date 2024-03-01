@@ -29,7 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
 }
 
 .Main h2 {
@@ -220,12 +220,12 @@
     .Main textarea {
         background-color: var(--background-grey);
         padding: 0.3em 0.4em;
-        width: 60vw;
+        width: 80vw;
     }
 
     .Main label {
         font-weight: bold;
-        width: 60vw;
+        width: 80vw;
     }
 
     .Main input:focus,
@@ -249,7 +249,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        max-width: 60vw !important;
+        max-width: 80vw !important;
     }
 
 

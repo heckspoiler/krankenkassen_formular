@@ -1,5 +1,5 @@
 .Main {
-    width: 60vw;
+    width: 80vw;
     transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
     transition-delay: 0.3s;
     display: flex;
@@ -34,7 +34,7 @@
 
 @media screen and (max-width:762px) {
     .Main {
-        width: 60vw;
+        width: 80vw;
     }
 
     .PLZContainer {
