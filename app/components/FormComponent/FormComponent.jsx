@@ -51,7 +51,7 @@ export const FormComponent = () => {
         'Wie alt bist du?',
         'Unfallversicherung',
         'Weitere Offerten',
-        'Wähle deinen Selbstbehalt/Franchise',
+        'Wähle deine Franchise',
         'Angebote',
       ];
 
