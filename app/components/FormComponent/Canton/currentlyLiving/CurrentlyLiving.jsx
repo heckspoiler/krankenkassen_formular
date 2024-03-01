@@ -15,7 +15,7 @@ export const CurrentlyLiving = () => {
 
   return (
     <section className={styles.Main}>
-      <p>Wohnen Sie bereits in der Schweiz?</p>
+      <p>Wohnst du bereits in der Schweiz?</p>
       <div className={styles.ButtonContainer}>
         <button
           value="Ja"

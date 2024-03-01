@@ -22,7 +22,6 @@ export const Age = () => {
 
   return (
     <div name="age" id="ageSelect" className={styles.Main}>
-      <h3>Bitte wählen Sie ihre Alterskategorie</h3>
       <div className={styles.AgeContainer}>
         {ageValues.map((ageValue) => (
           <button

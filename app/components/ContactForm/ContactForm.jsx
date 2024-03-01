@@ -54,12 +54,6 @@ export default function ContactForm() {
     }
   };
 
-  // const formattedBirthday = birthday.toLocaleDateString('de-DE', {
-  //   day: '2-digit',
-  //   month: '2-digit',
-  //   year: 'numeric',
-  // });
-
   const sendUs = async () => {
     const formData = {
       to: email,
@@ -153,10 +147,10 @@ export default function ContactForm() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <h2 className={styles.Title}>Erhalten Sie Ihre Offerte</h2>
+        <h2 className={styles.Title}>Unverbindliche Offerte</h2>
         <p>
-          Wir werden Ihre Anliegen vertraulich behandeln und die gewünschte
-          Krankenkasse über Ihr Interesse an einer unverbindlichen Offerte
+          Wir werden dein Anliegen vertraulich behandeln und die gewünschte
+          Krankenkasse über dein Interesse an einer unverbindlichen Offerte
           informieren.
         </p>
         <div className={styles.FormGroup}>

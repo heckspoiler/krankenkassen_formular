@@ -20,7 +20,6 @@ export const Accident = ({ isActive }) => {
 
   return (
     <div name="accident" id="accidentSelect" className={styles.Main}>
-      <h3>Möchten Sie eine Unfallversicherung?</h3>
       <div className={styles.AccidentContainer}>
         {accidentValues.map((accidentValue) => (
           <button

@@ -15,7 +15,7 @@ export const CantonRadio = () => {
 
   return (
     <section className={styles.Main}>
-      <p>Möchten Sie eine Offerte für Ihren aktuellen Wohnsitz?</p>
+      <p>Möchtest du eine Offerte für den aktuellen Wohnsitz?</p>
       <div className={styles.ButtonContainer}>
         <button
           value="Ja"

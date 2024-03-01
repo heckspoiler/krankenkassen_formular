@@ -23,7 +23,6 @@ export const Franchise = ({ isActive }) => {
 
   return (
     <div name="franchise" id="franchiseSelect" className={styles.Main}>
-      <h3>Bitte wählen Sie Ihre gewünschte Franchisehöhe</h3>
       <div className={styles.FranchiseContainer}>
         {franchiseValues.map((franchiseValue) => (
           <button

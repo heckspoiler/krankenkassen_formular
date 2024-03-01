@@ -14,7 +14,7 @@ export const AddMore = () => {
 
   return (
     <section name="addmore" id="AddMoreSelect" className={styles.Main}>
-      <h3>Möchten Sie noch weitere Personen zur Offerte hinzufügen?</h3>
+      <h3>Möchtest du noch weitere Personen zur Offerte hinzufügen?</h3>
       <button
         value="0"
         className={`${styles.Button} ${addMore === '0' ? styles.Active : ''}`}
@@ -55,7 +55,7 @@ export const AddMore = () => {
         className={`${styles.Paragraph} ${addMore !== '0' ? styles.Visible : ''}`}
       >
         Der Prämienvergleich bezieht sich auf eine Person. Angebote für weitere
-        Personen erhalten Sie in der persönlichen Offerte.
+        Personen erhältst du in deiner persönlichen Offerte.
       </p>
     </section>
   );

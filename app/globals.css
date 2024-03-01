@@ -10,7 +10,7 @@
   --blue: #8AAAE5;
   --lightblue: #54a4db;
   /* --green: #CCF381; */
-  --font: Arial;
+  --font: Helvetica, sans-serif;
   --lightblueold: rgba(10, 251, 223, 0.736);
 
 }
@@ -20,6 +20,7 @@ h2 {
   text-transform: uppercase;
   font-weight: bold;
   padding-bottom: 6vh;
+
 }
 
 * {

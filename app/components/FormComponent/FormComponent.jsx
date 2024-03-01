@@ -47,11 +47,11 @@ export const FormComponent = () => {
     const slider = document.querySelector(`.${styles.MultistepSlider}`);
     const syncUrlWithState = () => {
       const stepTitles = [
-        'Wohnsituation',
-        'Alterskategorie',
+        'Prämienrechner 2024',
+        'Wie alt bist du?',
         'Unfallversicherung',
         'Weitere Offerten',
-        'Franchisehöhe',
+        'Wähle deinen Selbstbehalt/Franchise',
         'Angebote',
       ];
 

@@ -87,8 +87,8 @@
 }
 
 .Indicator {
-    height: calc(0.2em + 0.3vw);
-    width: calc(0.2em + 0.3vw);
+    height: calc(0.4em + 0.3vw);
+    width: calc(0.4em + 0.3vw);
     background-color: rgb(203, 203, 203);
     border-radius: 50%;
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
