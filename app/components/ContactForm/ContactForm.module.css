@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
-    padding: 3vw;
+    padding: 3.1vw;
     transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
