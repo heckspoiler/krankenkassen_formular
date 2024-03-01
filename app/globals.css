@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+
   --background-grey: rgb(247, 246, 246);
   --background-grey-darker: rgb(203, 203, 203);
   --font-black: rgb(52, 52, 52);
@@ -11,7 +12,6 @@
   --green: #CCF381;
   --font: Arial;
   --lightblueold: rgba(10, 251, 223, 0.736);
-
 
 }
 
@@ -32,13 +32,10 @@ h2 {
 
 body {
   background-color: transparent;
-  background-color: white;
-  ;
-
+  background-color: transparent;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+
+button {
+  font-size: calc(0.9em + 0.2vw);
 }

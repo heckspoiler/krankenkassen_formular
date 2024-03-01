@@ -10,7 +10,7 @@
 
 .Multistep {
     position: relative;
-    width: 30vw;
+    width: 60vw;
     overflow: hidden;
 
 }
@@ -18,7 +18,7 @@
 .MultistepSlider {
     display: flex;
     flex-direction: row;
-    width: 180vw;
+    width: 360vw;
     transition: transform 0.6s ease-in-out;
     transition-delay: 0.1s;
     height: 60vh;
@@ -27,7 +27,7 @@
 
 .OffersContainer {
     height: auto;
-    width: 30vw;
+    width: 60vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -65,7 +65,7 @@
 
 .AdvanceButton {
     background-color: var(--background-grey);
-    padding: 0.8vw 1.6vw;
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     background-color: rgb(232, 232, 232);
     transition: scale 0.2s ease-in-out, color 0.2s ease-in-out, background-color 0.2s ease-in-out, width 0.2s ease-in;
 }
@@ -81,14 +81,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1vw;
+    gap: calc(0.5em + 1vw);
     padding-top: 3vh;
     width: 100%;
 }
 
 .Indicator {
-    height: 0.5vw;
-    width: 0.5vw;
+    height: calc(0.2em + 0.3vw);
+    width: calc(0.2em + 0.3vw);
     background-color: rgb(203, 203, 203);
     border-radius: 50%;
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;

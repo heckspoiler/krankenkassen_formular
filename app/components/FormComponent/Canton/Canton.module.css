@@ -1,5 +1,5 @@
 .Main {
-    width: 30vw;
+    width: 60vw;
     transition: transform 0.8s ease-in-out, opacity 0.5s ease-in-out;
     transition-delay: 0.3s;
     display: flex;
@@ -15,20 +15,20 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 1vw;
     column-gap: 1vw;
-    width: 30vw;
+    width: 60vw;
     padding: 0 2vw;
 
 }
 
 .Button {
 
-    padding: 0.8vw 0.8vw;
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     height: 3.2vw;
     width: 3.2vw;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--background-grey);
     outline: none;
-    font-size: calc(0.4em + 0.6vw);
+
 }
 
 .Button:hover {

@@ -1,6 +1,7 @@
 'use client';
 
 import styles from './ContactForm.module.css';
+import { useState } from 'react';
 import { useStore, getState } from 'zustand';
 import { formStore } from '@/utils/stores/formStore';
 import { contactFormStore } from '@/utils/stores/contactStore';
@@ -8,6 +9,8 @@ import dynamic from 'next/dynamic';
 import DatePicker from 'react-datepicker';
 import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import { offerStore } from '@/utils/stores/offerStore';
+import { SuccessAnimation } from './SuccessAnimation/SuccessAnimation';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -17,6 +20,7 @@ export const formInformation = [];
 
 export default function ContactForm() {
   const { showForm, setShowForm } = useStore(contactFormStore);
+
 
   const {
     surname,
@@ -39,9 +43,21 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await sendCustomer();
-    await sendUs();
+
+    if (surname === '' || firstname === '' || email === '' || phone === '') {
+      alert('Füllen Sie bitte alle Felder aus. ');
+    } else {
+      setIsActive(true);
+      await sendCustomer();
+      await sendUs();
+    }
   };
+
+  // const formattedBirthday = birthday.toLocaleDateString('de-DE', {
+  //   day: '2-digit',
+  //   month: '2-digit',
+  //   year: 'numeric',
+  // });
 
   const sendUs = async () => {
     const formData = {
@@ -51,8 +67,12 @@ export default function ContactForm() {
       <p><strong>Von:</strong> ${surname} ${firstname},</p>
       <p><strong>Geburtsdatum:</strong> ${birthday}</p>
       <p><strong>Mail:</strong> ${email}</p>
-      <p><strong>Telefon:</strong> ${phone}</p>
-      <p><strong>Nachricht:</strong> ${text}</p>`,
+      <p><strong>Telefon:</strong> ${phone}</p> 
+      <p><strong>Nachricht:</strong> ${text}</p>
+      <p><strong>Versicherer:</strong> ${versicherung}</p>
+      <p><strong>Tarif:</strong> ${tarif}</p>
+      <p><strong>Prämie:</strong> ${praemie}</p>
+     `,
     };
     try {
       const response = await fetch('/api/ourMail', {
@@ -77,11 +97,31 @@ export default function ContactForm() {
     const formData = {
       to: email,
       subject: 'Offerte',
-      html: `<h2>Ihre persönliche Offerte</h2>
-      <p>Sehr geehrte/r ${surname} ${firstname},</p>
-      <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden.</p>
-      <p>Freundliche Grüsse</p>
-      <p>Ihr Krankenkassenvergleich Team</p>`,
+      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Arial', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+      <tr>
+        <td style="background-color: white; padding: 20px; text-align: center;">
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/01/logologo-e1708288289213.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
+          <h2 style="color: #54a4db; font-size: 24px; margin-top: 20px;">Ihre persönliche Offerte</h2>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #ffffff; padding: 20px; color: #333; font-size: 16px;">
+          <p>Guten Tag ${firstname} ${surname},</p>
+          <p>vielen Dank für Ihr Interesse an unseren Dienstleistungen. Wir freuen uns, Ihnen bei der Suche nach der optimalen Krankenversicherung behilflich sein zu dürfen.</p>
+          <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden, um Ihre individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
+          <p>In der Zwischenzeit können Sie gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen, falls Sie Fragen haben.</p>
+          <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
+          <p>Freundliche Grüsse,</p>
+          <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #54a4db; padding: 20px; text-align: center;">
+          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folgen Sie uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
+        </td>
+      </tr>
+    </table>
+    `,
     };
 
     try {
@@ -119,7 +159,9 @@ export default function ContactForm() {
           informieren.
         </p>
         <div className={styles.FormGroup}>
-          <label htmlFor="surname">Nachname</label>
+          <label htmlFor="surname">
+            Nachname<span className={styles.required}>*</span>
+          </label>
           <input
             type="text"
             value={surname}
@@ -127,7 +169,7 @@ export default function ContactForm() {
             required
           />
         </div>
-        <div className={styles.FormGroup}>
+    <div className={styles.FormGroup}>
           <label htmlFor="firstname">Vorname</label>
           <input
             type="text"
@@ -137,7 +179,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="birthday">Geburtsdatum</label>
+          <label htmlFor="birthday">
+            Geburtsdatum<span className={styles.required}>*</span>
+          </label>
 
           <DatePicker
             className={styles.DatePicker}
@@ -154,7 +198,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="email">E-Mail</label>
+          <label htmlFor="email">
+            E-Mail<span className={styles.required}>*</span>
+          </label>
           <input
             type="email"
             id="email"
@@ -165,7 +211,9 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroup}>
-          <label htmlFor="phoneinput">Telefon</label>
+          <label htmlFor="phoneinput">
+            Telefon<span className={styles.required}>*</span>
+          </label>
           <div className={styles.PhoneInputContainer}>
             <PhoneInput
               className={styles.PhoneInput}
@@ -189,6 +237,7 @@ export default function ContactForm() {
         <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen
         </button>
+        <SuccessAnimation isActive={isActive} />
       </form>
     </section>
   );

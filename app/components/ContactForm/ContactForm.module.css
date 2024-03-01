@@ -1,7 +1,7 @@
 .Main {
     position: absolute;
     height: 100vh;
-    width: 30vw;
+    width: 60vw;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-150%);
@@ -10,8 +10,10 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
-    padding: 3.1vw;
-    transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    padding: 3vw;
+    transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1),
+        visibility 0s linear 0.8s;
 }
 
 
@@ -19,11 +21,12 @@
     visibility: visible;
     transform: translateX(-50%) translateY(-50%);
     transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition-delay: 0s;
 
 }
 
 .Main form {
-    gap: 1vw;
+    gap: calc(0.8em + 0.5vw);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +45,7 @@
 .Main textarea {
     background-color: var(--background-grey);
     padding: 0.7vw;
-    width: 20vw;
+    width: 40vw;
 }
 
 .Main label {
@@ -68,7 +71,7 @@
 }
 
 .FormGroup label {
-    width: 6vw;
+    width: calc(4em + 3vw);
 }
 
 
@@ -83,7 +86,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 20vw !important;
+    max-width: 40vw !important;
 }
 
 .PhoneInput * {
@@ -91,12 +94,17 @@
 
 }
 
+.required {
+    color: red;
+    font-size: 0.8em;
+    padding-left: 3px;
+}
+
 .Button {
     padding: 1vw 1vw;
     transition: scale 0.3s ease-in, background-color 0.2s ease-in;
     background-color: var(--lightblue);
     outline: none;
-    font-size: calc(0.5em + 0.5vw);
     color: white;
 }
 
@@ -112,8 +120,8 @@
 
 
 .CrossContainer {
-    height: 1.8vw;
-    width: 1.8vw;
+    height: calc(1vw + 1.2em);
+    width: calc(1vw + 1.2em);
     position: absolute;
     top: 3vh;
     right: 0;

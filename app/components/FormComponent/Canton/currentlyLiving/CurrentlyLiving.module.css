@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1vw;
+    gap: calc(1vw + 1em);
 }
 
 
@@ -14,15 +14,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3vw;
+    gap: 3em;
 }
 
 .Button {
     background-color: var(--background-grey);
-    width: 4vw;
-    padding: 0.5vw 0;
+    min-width: 4.5em;
+    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
     transition: scale 0.3s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
-    font-size: 0.9em;
+
 }
 
 .Button:hover {
