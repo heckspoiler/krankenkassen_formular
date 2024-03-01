@@ -101,12 +101,12 @@ export default function ContactForm() {
       </tr>
       <tr>
         <td style="background-color: #ffffff; padding: 20px; color: #333; font-size: 16px;">
-          <p>Guten Tag ${firstname} ${surname},</p>
-          <p>vielen Dank für Ihr Interesse an unseren Dienstleistungen. Wir freuen uns, Ihnen bei der Suche nach der optimalen Krankenversicherung behilflich sein zu dürfen.</p>
-          <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden, um Ihre individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
-          <p>In der Zwischenzeit können Sie gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen, falls Sie Fragen haben.</p>
+          <p>Guten Tag ${firstname},</p>
+          <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
+          <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
+          <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
           <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
-          <p>Freundliche Grüsse,</p>
+          <p>Liebe Grüsse,</p>
           <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
         </td>
       </tr>

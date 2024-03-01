@@ -52,7 +52,7 @@ export const FormComponent = () => {
         'Unfallversicherung',
         'Weitere Offerten',
         'Wähle deine Franchise',
-        'Angebote',
+        'Krankenkassenvergleich',
       ];
 
       if (isActive >= 0 && isActive < stepTitles.length) {
@@ -98,7 +98,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 || !weiter ? styles.Disabled : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 || !weiter ? styles.NotVisible : ''}`}
           id="advancebutton"
         >
           {buttonText}
