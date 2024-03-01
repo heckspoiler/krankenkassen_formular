@@ -42,8 +42,7 @@
 
 .PraemieText {
     font-weight: bold;
-    font-size: 1.4em;
-    text-decoration: underline;
+    font-size: 1.5em;
 }
 
 .Button {
@@ -97,21 +96,20 @@
 @media screen and (max-width:762px) {
 
 
+
+
     .OfferList {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: calc(1em + 0.8vw);
+        gap: calc(2em + 0.8vw);
     }
 
     .Offer {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
-        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
-        background-color: var(--background-grey);
         outline: none;
-        font-size: calc(0.5em + 0.7vw);
+        gap: 2.5em;
+        font-size: calc(0.6em + 0.7vw);
         padding: calc(1em + 0.4vh) calc(1em + 0.8vw);
     }
 
@@ -136,8 +134,8 @@
 
     .PraemieText {
         font-weight: bold;
-        font-size: 1.4em;
-        text-decoration: underline;
+        font-size: 1.6em;
+
     }
 
     .Button {
