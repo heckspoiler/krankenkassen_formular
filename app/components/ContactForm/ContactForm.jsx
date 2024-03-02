@@ -217,7 +217,7 @@ export default function ContactForm() {
               defaultCountry="CH"
               value={phone}
               onChange={setPhone}
-              placeholder="Telefonnummer inkl. Vorwahl"
+              placeholder="z.B. +41 123 45 67"
             />
           </div>
         </div>

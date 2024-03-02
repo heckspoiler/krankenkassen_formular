@@ -14,7 +14,7 @@ import { weiterStore } from '@/utils/stores/weiterStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
-  const [title, setTitle] = useState('Wohnsituation');
+  const [title, setTitle] = useState('Prämienrechner');
   const [buttonText, setButtonText] = useState('Weiter');
   const { fetch, setFetch } = useStore(fetchStore);
   const { plz, setPlz } = useStore(plzStore);
