@@ -98,7 +98,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 || !weiter ? styles.NotVisible : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.NotVisible : ''} ${!weiter ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}

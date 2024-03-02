@@ -101,11 +101,10 @@
 
 .Disabled {
     background-color: var(--background-grey);
-    color: var(--black);
+    color: rgb(144, 144, 144);
     scale: 1;
     pointer-events: none;
 }
-
 
 
 .NotVisible {
