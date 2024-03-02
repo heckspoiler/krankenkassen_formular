@@ -91,12 +91,12 @@ export default function Form() {
           const response = await supabase
             .from('praemien')
             .select(
-              'versicherer, kanton, altersklasse, unfall, tarif, franchise, praemie, region'
+              'versicherer, kanton, altersklasse, unfall, tarif, franchisestufe, praemie, region'
             )
             .eq('kanton', canton)
             .eq('unfall', selectedAccident)
             .eq('altersklasse', selectedAge)
-            .eq('franchise', selectedFranchise)
+            .eq('franchisestufe', selectedFranchise)
             .eq('region', praemiendecode(region));
 
           setDataset(response.data);

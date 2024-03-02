@@ -2,20 +2,33 @@ import React from 'react';
 import styles from './Franchise.module.css';
 import { useStore } from 'zustand';
 import { franchiseStore } from '@/utils/stores/franchiseStore';
-import { datasetStore } from '@/utils/stores/datasetStore';
+import { ageStore } from '@/utils/stores/ageStore';
 
 export const Franchise = ({ isActive }) => {
   const { franchise, setFranchise } = useStore(franchiseStore);
-  const [dataset, setDataset] = useStore(datasetStore).dataset;
+  const { age, setAge } = useStore(ageStore);
 
-  const franchiseValues = [
-    { code: 'FRA-300', label: '300 CHF' },
-    { code: 'FRA-500', label: '500 CHF' },
-    { code: 'FRA-1000', label: '1000 CHF' },
-    { code: 'FRA-1500', label: '1500 CHF' },
-    { code: 'FRA-2000', label: '2000 CHF' },
-    { code: 'FRA-2500', label: '2500 CHF' },
-  ];
+  let franchiseValues;
+
+  if (age !== 'AKL-KIN') {
+    franchiseValues = [
+      { code: 'FRAST1', label: '300 CHF' },
+      { code: 'FRAST2', label: '500 CHF' },
+      { code: 'FRAST3', label: '1000 CHF' },
+      { code: 'FRAST4', label: '1500 CHF' },
+      { code: 'FRAST5', label: '2000 CHF' },
+      { code: 'FRAST6', label: '2500 CHF' },
+    ];
+  } else {
+    franchiseValues = [
+      { code: 'FRAST1', label: '0 CHF' },
+      { code: 'FRAST2', label: '100 CHF' },
+      { code: 'FRAST3', label: '200 CHF' },
+      { code: 'FRAST4', label: '300 CHF' },
+      { code: 'FRAST5', label: '400 CHF' },
+      { code: 'FRAST7', label: '600 CHF' },
+    ];
+  }
 
   const handlefranchiseClick = (code) => {
     setFranchise(code);

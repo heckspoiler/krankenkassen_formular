@@ -100,8 +100,8 @@
 }
 
 .Disabled {
-    background-color: rgb(231, 231, 231);
-    color: var(--background-grey);
+    background-color: var(--background-grey);
+    color: var(--black);
     scale: 1;
     pointer-events: none;
 }
