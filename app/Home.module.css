@@ -1,7 +1,7 @@
 .Main {
     min-height: 100svh;
     min-width: 100svw;
-    background-color: white;
+    background-color: transparent;
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
