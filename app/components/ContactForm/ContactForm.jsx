@@ -11,6 +11,7 @@ import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { offerStore } from '@/utils/stores/offerStore';
 import { SuccessAnimation } from './SuccessAnimation/SuccessAnimation';
+import { addMoreStore } from '@/utils/stores/addMoreStore';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -22,6 +23,7 @@ export default function ContactForm() {
   const { showForm, setShowForm } = useStore(contactFormStore);
   const { versicherung, praemie, tarif } = useStore(offerStore);
   const [isActive, setIsActive] = useState(false);
+  const { addMore, setAddMore } = useStore(addMoreStore);
 
   const {
     surname,
@@ -44,7 +46,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(addMore);
     if (surname === '' || firstname === '' || email === '' || phone === '') {
       alert('Füllen Sie bitte alle Felder aus. ');
     } else {
@@ -67,6 +69,7 @@ export default function ContactForm() {
       <p><strong>Versicherer:</strong> ${versicherung}</p>
       <p><strong>Tarif:</strong> ${tarif}</p>
       <p><strong>Prämie:</strong> ${praemie}</p>
+      <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore}</p>
      `,
     };
     try {
@@ -101,18 +104,24 @@ export default function ContactForm() {
       </tr>
       <tr>
         <td style="background-color: #ffffff; padding: 20px; color: #333; font-size: 16px;">
-          <p>Guten Tag ${firstname},</p>
+          <p>Hallo ${firstname},</p>
           <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
           <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
           <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
           <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
+
+          <p>Hier kannst du eine Übersicht deiner Auswahl sehen: </p>
+          <p><strong>Krankenkasse:</strong> ${versicherung}</p>
+          <p><strong>Tarif:</strong> ${tarif}</p>
+          <p><strong>Prämie:</strong> ${praemie} CHF</p>
+          <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore}</p>
           <p>Liebe Grüsse,</p>
           <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
         </td>
       </tr>
       <tr>
         <td style="background-color: rgba(113, 0, 38, 1); padding: 20px; text-align: center;">
-          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folgen Sie uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
+          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folge uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
         </td>
       </tr>
     </table>
@@ -154,6 +163,17 @@ export default function ContactForm() {
           informieren.
         </p>
         <div className={styles.FormGroup}>
+          <label htmlFor="firstnameeeeeee">
+            Vorname<span className={styles.required}>*</span>
+          </label>
+          <input
+            type="text"
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.FormGroup}>
           <label htmlFor="surname">
             Nachname<span className={styles.required}>*</span>
           </label>
@@ -164,17 +184,7 @@ export default function ContactForm() {
             required
           />
         </div>
-        <div className={styles.FormGroup}>
-          <label htmlFor="firstnameeeeee">
-            Vorname<span className={styles.required}>*</span>
-          </label>
-          <input
-            type="text"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-            required
-          />
-        </div>
+
         <div className={styles.FormGroup}>
           <label htmlFor="birthday">
             Geburtsdatum<span className={styles.required}>*</span>
@@ -217,7 +227,7 @@ export default function ContactForm() {
               defaultCountry="CH"
               value={phone}
               onChange={setPhone}
-              placeholder="z.B. +41 123 45 67"
+              placeholder="Telefonnummer inkl. Vorwahl"
             />
           </div>
         </div>
