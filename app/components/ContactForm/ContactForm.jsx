@@ -12,6 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { offerStore } from '@/utils/stores/offerStore';
 import { SuccessAnimation } from './SuccessAnimation/SuccessAnimation';
 import { addMoreStore } from '@/utils/stores/addMoreStore';
+import { plzStore } from '@/utils/stores/plzStore';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -24,6 +25,7 @@ export default function ContactForm() {
   const { versicherung, praemie, tarif } = useStore(offerStore);
   const [isActive, setIsActive] = useState(false);
   const { addMore, setAddMore } = useStore(addMoreStore);
+  const plz = useStore(plzStore).plz;
 
   const {
     surname,
@@ -69,6 +71,7 @@ export default function ContactForm() {
       <p><strong>Versicherer:</strong> ${versicherung}</p>
       <p><strong>Tarif:</strong> ${tarif}</p>
       <p><strong>Prämie:</strong> ${praemie}</p>
+      <p><strong>Postleitzahl:</strong> ${plz}</p>
       <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore}</p>
      `,
     };
@@ -94,7 +97,7 @@ export default function ContactForm() {
   const sendCustomer = async () => {
     const formData = {
       to: email,
-      subject: 'Offerte',
+      subject: `${firstname}, deine persönliche Offerte kommt bald.`,
       html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Helvetica', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
       <tr>
         <td style="background-color: white; padding: 20px; text-align: center;">
@@ -108,15 +111,19 @@ export default function ContactForm() {
           <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
           <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
           <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
-          <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
-
-          <p>Hier kannst du eine Übersicht deiner Auswahl sehen: </p>
+          <p>Wir danken dir für dein Vertrauen und freuen uns darauf, dich persönlich zu beraten.</p>
+          <br/>
+          <h3>Hier kannst du eine Übersicht deiner Auswahl sehen: </h3>
+          <div style="background-color: rgba(238, 237, 233, 1); padding: 20px; color: #333; font-size: 16px;">
+          <p><strong>Postleitzahl:</strong> ${plz}</p>
           <p><strong>Krankenkasse:</strong> ${versicherung}</p>
           <p><strong>Tarif:</strong> ${tarif}</p>
           <p><strong>Prämie:</strong> ${praemie} CHF</p>
-          <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore}</p>
+          <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore && addMore === '3+' ? '3 oder mehr' : addMore}</p>
+          </div>
           <p>Liebe Grüsse,</p>
-          <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
+          <p style="font-weight: bold;">Dein Krankenkassenkompass Team</p>
+        
         </td>
       </tr>
       <tr>
