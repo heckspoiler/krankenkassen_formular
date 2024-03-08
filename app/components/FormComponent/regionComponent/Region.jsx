@@ -30,7 +30,7 @@ export const Region = () => {
       <CurrentlyLiving />
       <CantonRadio />
       <div className={styles.PLZContainer}>
-        <p>Bitte gebe deine Postleitzahl ein:</p>
+        <p>Bitte gib deine Postleitzahl ein:</p>
         <input
           type="text"
           id="plz"
