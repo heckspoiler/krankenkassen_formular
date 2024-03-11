@@ -7,11 +7,12 @@
   --background-grey: rgb(247, 246, 246);
   --background-grey-darker: rgb(203, 203, 203);
   --font-black: rgb(52, 52, 52);
-  --blue: #8AAAE5;
-  --lightblue: #54a4db;
+  --blue: rgb(163, 3, 57);
+  /* --lightblue: #54a4db; */
+  --lightblue: rgba(113, 0, 38, 1);
   /* --green: #CCF381; */
-  --font: Arial;
-  --lightblueold: rgba(10, 251, 223, 0.736);
+  --font: Helvetica, sans-serif;
+  --lightblueold: rgba(113, 0, 38, 1);
 
 }
 
@@ -20,6 +21,7 @@ h2 {
   text-transform: uppercase;
   font-weight: bold;
   padding-bottom: 6vh;
+
 }
 
 * {
@@ -32,10 +34,26 @@ h2 {
 
 body {
   background-color: transparent;
-  background-color: transparent;
+
 }
 
 
 button {
-  font-size: calc(0.9em + 0.2vw);
+  font-size: calc(0.85em + 0.2vw);
+}
+
+@media screen and (max-width:762px) {
+  p {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  button {
+    font-size: calc(0.85em + 0.2vw);
+  }
+
+  h3 {
+    text-align: center;
+  }
+
 }

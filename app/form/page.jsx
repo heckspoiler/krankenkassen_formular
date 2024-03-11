@@ -70,7 +70,7 @@ export default function Form() {
         } catch (error) {
           if (plz.length !== 4) {
             alert(
-              'Bitte geben Sie eine gültige PLZ ein. Wohlmöglich müssen Sie die Hauptpostleitzahl Ihrer Gemeinde eingeben oder etwas spezifischer sein. Beispielsweise reicht 8000 nicht, um in Zürich die Region ausfindig zu machen. Analog sollten Sie in Chur anstelle von 7002 lediglich den Wert 7000 eintragen, da gewisse Gemeinden nur eine Prämienregion haben. Falls diese Massnahmen nicht zum Erfolg führen, raten wir an, einen anderen Browser zu nutzen. '
+              'Bitte gib eine gültige PLZ ein. Wohlmöglich muss du die Hauptpostleitzahl deiner Gemeinde eingeben oder etwas spezifischer sein. Beispielsweise reicht 8000 nicht, um in Zürich die Region ausfindig zu machen. Analog sollten Sie in Chur anstelle von 7002 lediglich den Wert 7000 eintragen, da gewisse Gemeinden nur eine Prämienregion haben. Falls diese Massnahmen nicht zum Erfolg führen, raten wir an, einen anderen Browser zu nutzen. '
             );
             setWeiter(false);
           } else {
@@ -91,12 +91,12 @@ export default function Form() {
           const response = await supabase
             .from('praemien')
             .select(
-              'versicherer, kanton, altersklasse, unfall, tarif, franchise, praemie, region'
+              'versicherer, kanton, altersklasse, unfall, tarif, franchisestufe, praemie, region'
             )
             .eq('kanton', canton)
             .eq('unfall', selectedAccident)
             .eq('altersklasse', selectedAge)
-            .eq('franchise', selectedFranchise)
+            .eq('franchisestufe', selectedFranchise)
             .eq('region', praemiendecode(region));
 
           setDataset(response.data);

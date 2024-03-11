@@ -14,7 +14,7 @@ import { weiterStore } from '@/utils/stores/weiterStore';
 
 export const FormComponent = () => {
   const [isActive, setIsActive] = useState(0);
-  const [title, setTitle] = useState('Wohnsituation');
+  const [title, setTitle] = useState('Prämienrechner');
   const [buttonText, setButtonText] = useState('Weiter');
   const { fetch, setFetch } = useStore(fetchStore);
   const { plz, setPlz } = useStore(plzStore);
@@ -47,16 +47,16 @@ export const FormComponent = () => {
     const slider = document.querySelector(`.${styles.MultistepSlider}`);
     const syncUrlWithState = () => {
       const stepTitles = [
-        'Wohnsituation',
-        'Alterskategorie',
+        'Prämienrechner 2024',
+        'Wie alt bist du?',
         'Unfallversicherung',
         'Weitere Offerten',
-        'Franchisehöhe',
-        'Angebote',
+        'Wähle deine Franchise',
+        'Krankenkassenvergleich',
       ];
 
       if (isActive >= 0 && isActive < stepTitles.length) {
-        slider.style.transform = `translateX(-${60 * isActive}vw)`;
+        slider.style.transform = `translateX(-${80 * isActive}vw)`;
         setTitle(stepTitles[isActive]);
       }
     };
@@ -98,7 +98,7 @@ export const FormComponent = () => {
 
         <button
           onClick={handleNext}
-          className={`${styles.AdvanceButton} ${isActive === 5 || !weiter ? styles.Disabled : ''}`}
+          className={`${styles.AdvanceButton} ${isActive === 5 ? styles.NotVisible : ''} ${!weiter ? styles.Disabled : ''}`}
           id="advancebutton"
         >
           {buttonText}

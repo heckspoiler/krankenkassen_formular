@@ -42,8 +42,7 @@
 
 .PraemieText {
     font-weight: bold;
-    font-size: 1.4em;
-    text-decoration: underline;
+    font-size: 1.5em;
 }
 
 .Button {
@@ -90,4 +89,92 @@
     scale: 1;
     background-color: white;
     color: white;
+}
+
+
+
+@media screen and (max-width:762px) {
+
+
+
+
+    .OfferList {
+        gap: calc(2em + 0.8vw);
+    }
+
+    .Offer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        gap: 2.5em;
+        font-size: calc(0.6em + 0.7vw);
+        padding: calc(1em + 0.4vh) calc(1em + 0.8vw);
+    }
+
+    .TextContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        padding: 0.8vw 0.6vw;
+        gap: 2vw;
+
+    }
+
+    .OfferTitle {
+        font-weight: bold;
+        font-size: 1.4em;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .PraemieText {
+        font-weight: bold;
+        font-size: 1.6em;
+
+    }
+
+    .Button {
+        padding: calc(0.3vh + 0.6em) calc(0.3vw + 0.8em);
+        background-color: var(--lightblue);
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+        color: white;
+        text-transform: uppercase;
+        font-size: 1em;
+    }
+
+
+    .Button:active {
+        scale: 1;
+        background-color: white;
+        color: white;
+    }
+
+    .FranchiseButton {
+        padding: calc(0.2vh + 0.5em) calc(0.2vw + 0.8em);
+        background-color: var(--blue);
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+        color: white;
+        font-size: 0.8em;
+        text-transform: uppercase;
+    }
+
+    .FranchiseButton:hover {
+        scale: 1.02;
+        background-color: var(--blue);
+        cursor: pointer;
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+        color: white;
+    }
+
+    .FranchiseButton:active {
+        scale: 1;
+        background-color: white;
+        color: white;
+    }
+
 }

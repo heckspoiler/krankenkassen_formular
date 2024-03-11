@@ -1,7 +1,7 @@
 .Main {
     padding: 1vw;
     height: 100%;
-    width: 60vw;
+    width: 80vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .AgeContainer {
-    width: 60vw;
+    width: 80vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -44,4 +44,44 @@
     scale: 1;
     background-color: var(--lightblue);
     color: white;
+}
+
+
+@media screen and (max-width:762px) {
+    .Main {
+        width: 80vw;
+    }
+
+    .AgeContainer {
+
+        gap: calc(1vw + 1em);
+    }
+
+    .Button {
+
+        padding: calc(1vh + 0.8em) calc(2vw + 2.2em);
+        transition: scale 0.3s ease-in, background-color 0.2s ease-in;
+        background-color: var(--background-grey);
+        outline: none;
+
+
+    }
+
+    .Button:hover {
+        scale: 1.02;
+        background-color: var(--lightblue);
+        color: white;
+    }
+
+    .Button:active {
+        scale: 1;
+        background-color: white;
+    }
+
+    .Active {
+        scale: 1;
+        background-color: var(--lightblue);
+        color: white;
+    }
+
 }

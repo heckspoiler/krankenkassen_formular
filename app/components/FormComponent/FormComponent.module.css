@@ -10,15 +10,19 @@
 
 .Multistep {
     position: relative;
-    width: 60vw;
+    width: 80vw;
     overflow: hidden;
 
+}
+
+.title {
+    text-align: center;
 }
 
 .MultistepSlider {
     display: flex;
     flex-direction: row;
-    width: 360vw;
+    width: 480vw;
     transition: transform 0.6s ease-in-out;
     transition-delay: 0.1s;
     height: 60vh;
@@ -27,7 +31,7 @@
 
 .OffersContainer {
     height: auto;
-    width: 60vw;
+    width: 80vw;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -54,11 +58,12 @@
 
 .LowerContainer {
     width: 100%;
+    max-width: 80vw;
     display: flex;
     align-items: center;
-    padding-top: 4vw;
+    padding-top: calc(2em + 2vw);
     justify-content: space-between;
-    align-self: flex-end;
+    align-self: center;
 
 }
 
@@ -87,19 +92,20 @@
 }
 
 .Indicator {
-    height: calc(0.2em + 0.3vw);
-    width: calc(0.2em + 0.3vw);
+    height: calc(0.6em + 0.3vw);
+    width: calc(0.6em + 0.3vw);
     background-color: rgb(203, 203, 203);
     border-radius: 50%;
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .Disabled {
-    background-color: rgb(231, 231, 231);
-    color: var(--background-grey);
+    background-color: var(--background-grey);
+    color: rgb(144, 144, 144);
     scale: 1;
     pointer-events: none;
 }
+
 
 .NotVisible {
     visibility: hidden;
@@ -109,4 +115,22 @@
     transform: scale(1.05);
     background-color: var(--lightblue);
     color: white;
+}
+
+
+
+@media screen and (max-width:762px) {
+
+
+    .IndicatorContainer {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: calc(0.5em + 1vw);
+        padding-top: 3vh;
+        width: 100%;
+        max-width: 50vw;
+    }
+
 }

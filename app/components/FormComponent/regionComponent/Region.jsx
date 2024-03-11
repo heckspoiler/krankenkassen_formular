@@ -11,7 +11,6 @@ import { CurrentlyLiving } from '../Canton/currentlyLiving/CurrentlyLiving';
 export const Region = () => {
   const { plz, setPLZ } = useStore(plzStore);
   const [inputValue, setInputValue] = useState('');
-  const { region, setRegion } = useStore(regionStore);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -31,7 +30,7 @@ export const Region = () => {
       <CurrentlyLiving />
       <CantonRadio />
       <div className={styles.PLZContainer}>
-        <p>Bitte geben Sie Ihre Postleitzahl ein</p>
+        <p>Bitte gib deine Postleitzahl ein:</p>
         <input
           type="text"
           id="plz"

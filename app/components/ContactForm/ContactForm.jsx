@@ -11,6 +11,8 @@ import 'react-phone-number-input/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { offerStore } from '@/utils/stores/offerStore';
 import { SuccessAnimation } from './SuccessAnimation/SuccessAnimation';
+import { addMoreStore } from '@/utils/stores/addMoreStore';
+import { plzStore } from '@/utils/stores/plzStore';
 
 const PhoneInput = dynamic(() => import('react-phone-number-input'), {
   ssr: false,
@@ -20,6 +22,10 @@ export const formInformation = [];
 
 export default function ContactForm() {
   const { showForm, setShowForm } = useStore(contactFormStore);
+  const { versicherung, praemie, tarif } = useStore(offerStore);
+  const [isActive, setIsActive] = useState(false);
+  const { addMore, setAddMore } = useStore(addMoreStore);
+  const plz = useStore(plzStore).plz;
 
 
   const {
@@ -43,7 +49,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(addMore);
     if (surname === '' || firstname === '' || email === '' || phone === '') {
       alert('Füllen Sie bitte alle Felder aus. ');
     } else {
@@ -52,12 +58,6 @@ export default function ContactForm() {
       await sendUs();
     }
   };
-
-  // const formattedBirthday = birthday.toLocaleDateString('de-DE', {
-  //   day: '2-digit',
-  //   month: '2-digit',
-  //   year: 'numeric',
-  // });
 
   const sendUs = async () => {
     const formData = {
@@ -72,6 +72,8 @@ export default function ContactForm() {
       <p><strong>Versicherer:</strong> ${versicherung}</p>
       <p><strong>Tarif:</strong> ${tarif}</p>
       <p><strong>Prämie:</strong> ${praemie}</p>
+      <p><strong>Postleitzahl:</strong> ${plz}</p>
+      <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore}</p>
      `,
     };
     try {
@@ -96,28 +98,38 @@ export default function ContactForm() {
   const sendCustomer = async () => {
     const formData = {
       to: email,
-      subject: 'Offerte',
-      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Arial', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+      subject: `${firstname}, deine persönliche Offerte kommt bald.`,
+      html: `<table width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: auto; font-family: 'Helvetica', sans-serif; border-collapse: collapse; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
       <tr>
         <td style="background-color: white; padding: 20px; text-align: center;">
-          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/01/logologo-e1708288289213.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
-          <h2 style="color: #54a4db; font-size: 24px; margin-top: 20px;">Ihre persönliche Offerte</h2>
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/logo-kk-1536x488.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
+          <h2 style="color: rgba(113, 0, 38, 1); font-size: 24px; margin-top: 20px;">Deine persönliche Offerte</h2>
         </td>
       </tr>
       <tr>
         <td style="background-color: #ffffff; padding: 20px; color: #333; font-size: 16px;">
-          <p>Guten Tag ${firstname} ${surname},</p>
-          <p>vielen Dank für Ihr Interesse an unseren Dienstleistungen. Wir freuen uns, Ihnen bei der Suche nach der optimalen Krankenversicherung behilflich sein zu dürfen.</p>
-          <p>Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden, um Ihre individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
-          <p>In der Zwischenzeit können Sie gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen, falls Sie Fragen haben.</p>
-          <p>Wir danken Ihnen für Ihr Vertrauen und freuen uns darauf, Sie persönlich zu beraten.</p>
-          <p>Freundliche Grüsse,</p>
-          <p style="font-weight: bold;">Ihr Krankenkassenkompass Team</p>
+          <p>Hallo ${firstname},</p>
+          <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
+          <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
+          <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
+          <p>Wir danken dir für dein Vertrauen und freuen uns darauf, dich persönlich zu beraten.</p>
+          <br/>
+          <h3>Hier kannst du eine Übersicht deiner Auswahl sehen: </h3>
+          <div style="background-color: rgba(238, 237, 233, 1); padding: 20px; color: #333; font-size: 16px;">
+          <p><strong>Postleitzahl:</strong> ${plz}</p>
+          <p><strong>Krankenkasse:</strong> ${versicherung}</p>
+          <p><strong>Tarif:</strong> ${tarif}</p>
+          <p><strong>Prämie:</strong> ${praemie} CHF</p>
+          <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore && addMore === '3+' ? '3 oder mehr' : addMore}</p>
+          </div>
+          <p>Liebe Grüsse,</p>
+          <p style="font-weight: bold;">Dein Krankenkassenkompass Team</p>
+        
         </td>
       </tr>
       <tr>
-        <td style="background-color: #54a4db; padding: 20px; text-align: center;">
-          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folgen Sie uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
+        <td style="background-color: rgba(113, 0, 38, 1); padding: 20px; text-align: center;">
+          <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folge uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
         </td>
       </tr>
     </table>
@@ -152,25 +164,16 @@ export default function ContactForm() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <h2 className={styles.Title}>Erhalten Sie Ihre Offerte</h2>
+        <h2 className={styles.Title}>Unverbindliche Offerte</h2>
         <p>
-          Wir werden Ihre Anliegen vertraulich behandeln und die gewünschte
-          Krankenkasse über Ihr Interesse an einer unverbindlichen Offerte
+          Wir werden dein Anliegen vertraulich behandeln und die gewünschte
+          Krankenkasse über dein Interesse an einer unverbindlichen Offerte
           informieren.
         </p>
         <div className={styles.FormGroup}>
-          <label htmlFor="surname">
-            Nachname<span className={styles.required}>*</span>
+          <label htmlFor="firstnameeeeeee">
+            Vorname<span className={styles.required}>*</span>
           </label>
-          <input
-            type="text"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
-            required
-          />
-        </div>
-    <div className={styles.FormGroup}>
-          <label htmlFor="firstname">Vorname</label>
           <input
             type="text"
             value={firstname}
@@ -178,6 +181,20 @@ export default function ContactForm() {
             required
           />
         </div>
+
+        <div className={styles.FormGroup}>
+          <label htmlFor="surname">
+            Nachname<span className={styles.required}>*</span>
+          </label>
+
+          <input
+            type="text"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
+            required
+          />
+        </div>
+
         <div className={styles.FormGroup}>
           <label htmlFor="birthday">
             Geburtsdatum<span className={styles.required}>*</span>

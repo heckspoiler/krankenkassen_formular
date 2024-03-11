@@ -15,21 +15,23 @@ export const CantonRadio = () => {
 
   return (
     <section className={styles.Main}>
-      <p>Möchten Sie eine Offerte für Ihren aktuellen Wohnsitz?</p>
+      <p>
+        Möchtest du eine Offerte für den aktuellen oder zukünftigen Wohnsitz?
+      </p>
       <div className={styles.ButtonContainer}>
         <button
           value="Ja"
           onClick={handleChange}
           className={`${styles.Button} ${cantonRadio === 'Ja' ? styles.Active : ''}`}
         >
-          Ja
+          Aktueller Wohnsitz
         </button>
         <button
           value="Nein"
           onClick={handleChange}
           className={`${styles.Button} ${cantonRadio === 'Nein' ? styles.Active : ''}`}
         >
-          Nein
+          Zukünftiger Wohnsitz
         </button>
       </div>
     </section>
