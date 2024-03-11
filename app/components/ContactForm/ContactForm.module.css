@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
-
     padding: 3vw;
     transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1),
         visibility 0s linear 0.8s;
@@ -99,6 +98,8 @@
     font-size: 0.8em;
     padding-left: 3px;
 }
+
+
 
 .Button {
     padding: 1vw 1vw;

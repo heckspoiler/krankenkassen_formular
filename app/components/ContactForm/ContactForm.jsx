@@ -27,7 +27,6 @@ export default function ContactForm() {
   const { addMore, setAddMore } = useStore(addMoreStore);
   const plz = useStore(plzStore).plz;
 
-
   const {
     surname,
     setSurname,
@@ -43,7 +42,7 @@ export default function ContactForm() {
     setText,
   } = useStore(formStore);
 
-  const hideFormClick = () => {
+  const showFormClick = () => {
     setShowForm(!showForm);
   };
 
@@ -157,7 +156,7 @@ export default function ContactForm() {
 
   return (
     <section className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
-      <div className={styles.CrossContainer} onClick={hideFormClick}>
+      <div className={styles.CrossContainer} onClick={showFormClick}>
         <div className={styles.Cross}>
           <div></div>
           <div></div>
@@ -181,12 +180,10 @@ export default function ContactForm() {
             required
           />
         </div>
-
         <div className={styles.FormGroup}>
           <label htmlFor="surname">
             Nachname<span className={styles.required}>*</span>
           </label>
-
           <input
             type="text"
             value={surname}
