@@ -19,13 +19,11 @@ export function OfferList({ isActive, setIsActive }) {
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
   );
 
-  const showFormClick = (offer) => {
-    setShowForm(!showForm); 
-    const formattedPraemie = parseFloat(offer.praemie).toFixed(2);
-    let versichererName = offer.versicherer.replace('�KK', 'ÖKK');
-    versichererName = versichererName    
-    setOffer(versichererName, formattedPraemie, offer.tarif);
-    console.log(versicherung, praemie, tarif)
+
+  const showFormClick = (e) => {
+    e.preventDefault();
+    !showForm ? setShowForm(true) : setShowForm(false);
+    console.log('showForm', showForm);
   };
 
   const anotherFranchise = () => {
