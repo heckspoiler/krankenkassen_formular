@@ -21,7 +21,6 @@ h2 {
   text-transform: uppercase;
   font-weight: bold;
   padding-bottom: 6vh;
-
 }
 
 * {
@@ -29,6 +28,7 @@ h2 {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  font-family: var(--font);
 }
 
 
