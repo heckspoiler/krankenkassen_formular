@@ -50,7 +50,7 @@ export default function ContactForm() {
     e.preventDefault();
     console.log(addMore);
     if (surname === '' || firstname === '' || email === '' || phone === '') {
-      alert('Füllen Sie bitte alle Felder aus. ');
+      alert('Fülle bitte alle Felder aus. ');
     } else {
       setIsActive(true);
       await sendCustomer();
