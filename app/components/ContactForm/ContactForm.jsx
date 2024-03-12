@@ -102,7 +102,6 @@ export default function ContactForm() {
       <tr>
         <td style="background-color: white; padding: 20px; text-align: center;">
           <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/logo-kk-1536x488.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
-          <h2 style="color: rgba(113, 0, 38, 1); font-size: 24px; margin-top: 20px;">Deine persönliche Offerte</h2>
         </td>
       </tr>
       <tr>
@@ -110,10 +109,9 @@ export default function ContactForm() {
           <p>Hallo ${firstname},</p>
           <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
           <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
-          <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
           <p>Wir danken dir für dein Vertrauen und freuen uns darauf, dich persönlich zu beraten.</p>
           <br/>
-          <h3>Hier kannst du eine Übersicht deiner Auswahl sehen: </h3>
+          <h3>Übersicht deiner Auswahl: </h3>
           <div style="background-color: rgba(238, 237, 233, 1); padding: 20px; color: #333; font-size: 16px;">
           <p><strong>Postleitzahl:</strong> ${plz}</p>
           <p><strong>Krankenkasse:</strong> ${versicherung}</p>
@@ -122,15 +120,23 @@ export default function ContactForm() {
           <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore && addMore === '3+' ? '3 oder mehr' : addMore}</p>
           </div>
           <p>Liebe Grüsse,</p>
-          <p style="font-weight: bold;">Dein Krankenkassenkompass Team</p>
-        
+          <h3 style="font-weight: bold;">Dein Krankenkassenkompass Team</h3>
+          <br/>
+          <div style="width: 100%; border-bottom: 1px solid rgba(113, 0, 38, 1)"></div>
+          <br />
+          <p style="font-weight: bold;">Dein persönlicher Berater</p>
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/Patrick-Schlumpf-Kundenberater.jpg" alt="Portrait von Patrick Schlumpf" style="max-width: 100px; height: auto; border-radius: 50%;">
+          <p>Patrick Schlumpf</p>
+          <p style="color: rgba(113, 0, 38, 1); text-decoration: underline; text-decoration-color: rgba(113, 0, 38, 1);">+41 44 315 19 44</p>
+          <p><a href="mailto:info@krankenkassen-kompass.ch" style="color: rgba(113, 0, 38, 1); text-decoration: underline; text-decoration-color: rgba(113, 0, 38, 1);">info@krankenkassen-kompass.ch</a></p>
+          
         </td>
       </tr>
-      <tr>
+       <!-- <tr>
         <td style="background-color: rgba(113, 0, 38, 1); padding: 20px; text-align: center;">
           <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folge uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
         </td>
-      </tr>
+      </tr> -->
     </table>
     `,
     };
