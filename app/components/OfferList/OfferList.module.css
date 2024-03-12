@@ -31,6 +31,7 @@
     align-items: center;
     padding: 0.6vw 0.4vw;
     gap: 0.8vw;
+    border: solid 1px black; 
 }
 
 .OfferTitle {
