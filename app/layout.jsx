@@ -1,7 +1,7 @@
-import { Roboto } from 'next/font/google';
+import { Helvetica } from 'next/font/google';
 import './globals.css';
 
-const inter = Roboto({
+const inter = Helvetica({
   subsets: ['latin'],
   weight: ['100', '300', '400', '700', '900'],
   style: 'normal',
