@@ -17,7 +17,7 @@
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: calc(1.3rem + 0.4vw);
   text-transform: uppercase;
   font-weight: bold;
   padding-bottom: 4vh;
