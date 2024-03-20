@@ -17,10 +17,11 @@
 }
 
 h2 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
-  padding-bottom: 6vh;
+  padding-bottom: 4vh;
+  padding-top: 1vh;
 }
 
 * {
