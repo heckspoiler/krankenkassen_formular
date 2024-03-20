@@ -22,8 +22,8 @@
 
 .Main input {
     background-color: var(--background-grey);
-    padding: calc(0.6em + 0.4vh) calc(1em + 0.8vw);
-    width: calc(6em + 6vw);
+    padding: calc(0.4em + 0.4vh) calc(1em + 0.8vw);
+    width: calc(3em + 6vw);
     text-align: center;
 }
 
