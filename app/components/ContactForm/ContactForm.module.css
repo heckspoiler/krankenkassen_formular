@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
-
     padding: 3vw;
     transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1),
         visibility 0s linear 0.8s;
@@ -67,11 +66,29 @@
     justify-content: center;
     align-items: center;
     gap: 3vw;
+}
 
+.FormGroupAccept {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+    padding: 1em 0;
 }
 
 .FormGroup label {
     width: calc(4em + 3vw);
+}
+
+.TermsLabel {
+    width: fit-content;
+    font-weight: 200 !important;
+    font-size: 0.8em;
+}
+
+.TermsLabel a {
+    text-decoration: underline;
 }
 
 
@@ -99,6 +116,8 @@
     font-size: 0.8em;
     padding-left: 3px;
 }
+
+
 
 .Button {
     padding: 1vw 1vw;
@@ -166,6 +185,9 @@
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.TermsLabel {
+    font-weight: 300;
+}
 
 
 @media screen and (max-width:762px) {
@@ -226,6 +248,12 @@
         width: 80vw;
     }
 
+    .TermsLabel {
+        font-weight: 200 !important;
+        font-size: 0.8em;
+        text-align: center;
+    }
+
     .Main input:focus,
     .Main textarea:focus {
         outline: 2px solid var(--lightblue);
@@ -241,6 +269,10 @@
         flex-direction: column;
     }
 
+    .FormGroupAccept {
+        gap: 0.2em;
+        flex-direction: column;
+    }
 
 
     .PhoneInput {
@@ -282,7 +314,7 @@
         width: calc(1vw + 1.2em);
         position: absolute;
         top: 3vh;
-        right: 3em;
+        right: calc(1em + 1vw);
     }
 
     .Cross {

@@ -34,6 +34,7 @@
 .Active {
     background-color: var(--lightblue);
     color: white;
+    border: none;
 }
 
 @media screen and (max-width:762px) {

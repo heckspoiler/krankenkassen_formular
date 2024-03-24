@@ -26,7 +26,7 @@ export default function ContactForm() {
   const [isActive, setIsActive] = useState(false);
   const { addMore, setAddMore } = useStore(addMoreStore);
   const plz = useStore(plzStore).plz;
-
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const {
     surname,
@@ -43,15 +43,15 @@ export default function ContactForm() {
     setText,
   } = useStore(formStore);
 
-  const hideFormClick = () => {
+  const showFormClick = () => {
     setShowForm(!showForm);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(addMore);
+
     if (surname === '' || firstname === '' || email === '' || phone === '') {
-      alert('Füllen Sie bitte alle Felder aus. ');
+      alert('Fülle bitte alle Felder aus. ');
     } else {
       setIsActive(true);
       await sendCustomer();
@@ -103,7 +103,6 @@ export default function ContactForm() {
       <tr>
         <td style="background-color: white; padding: 20px; text-align: center;">
           <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/logo-kk-1536x488.png" alt="Logo Krankenkassenkompass" style="max-width: 200px; border-radius: 5px;">
-          <h2 style="color: rgba(113, 0, 38, 1); font-size: 24px; margin-top: 20px;">Deine persönliche Offerte</h2>
         </td>
       </tr>
       <tr>
@@ -111,10 +110,9 @@ export default function ContactForm() {
           <p>Hallo ${firstname},</p>
           <p>vielen Dank für dein Interesse an unseren Dienstleistungen. Wir freuen uns, dir bei der Suche nach der optimalen Krankenversicherung behilflich zu sein.</p>
           <p>Wir haben deine Anfrage erhalten und werden uns so schnell wie möglich bei dir melden, um deine individuellen Bedürfnisse und Anforderungen zu besprechen.</p>
-          <p>In der Zwischenzeit kannst du gerne unsere Website für weitere Informationen besuchen oder direkt Kontakt mit uns aufnehmen.</p>
           <p>Wir danken dir für dein Vertrauen und freuen uns darauf, dich persönlich zu beraten.</p>
           <br/>
-          <h3>Hier kannst du eine Übersicht deiner Auswahl sehen: </h3>
+          <h3>Übersicht deiner Auswahl: </h3>
           <div style="background-color: rgba(238, 237, 233, 1); padding: 20px; color: #333; font-size: 16px;">
           <p><strong>Postleitzahl:</strong> ${plz}</p>
           <p><strong>Krankenkasse:</strong> ${versicherung}</p>
@@ -123,15 +121,23 @@ export default function ContactForm() {
           <p><strong>Zusätzliche Personen:</strong> ${addMore === '0' ? 'nein' : addMore && addMore === '3+' ? '3 oder mehr' : addMore}</p>
           </div>
           <p>Liebe Grüsse,</p>
-          <p style="font-weight: bold;">Dein Krankenkassenkompass Team</p>
-        
+          <h3 style="font-weight: bold;">Dein Krankenkassenkompass Team</h3>
+          <br/>
+          <div style="width: 100%; border-bottom: 1px solid rgba(113, 0, 38, 1)"></div>
+          <br />
+          <p style="font-weight: bold;">Dein persönlicher Berater</p>
+          <img src="https://krankenkassen-kompass.ch/wp-content/uploads/2024/02/Patrick-Schlumpf-Kundenberater.jpg" alt="Portrait von Patrick Schlumpf" style="max-width: 100px; height: auto; border-radius: 50%;">
+          <p>Patrick Schlumpf</p>
+          <p style="color: rgba(113, 0, 38, 1); text-decoration: underline; text-decoration-color: rgba(113, 0, 38, 1);">+41 44 315 19 44</p>
+          <p><a href="mailto:info@krankenkassen-kompass.ch" style="color: rgba(113, 0, 38, 1); text-decoration: underline; text-decoration-color: rgba(113, 0, 38, 1);">info@krankenkassen-kompass.ch</a></p>
+          
         </td>
       </tr>
-      <tr>
+       <!-- <tr>
         <td style="background-color: rgba(113, 0, 38, 1); padding: 20px; text-align: center;">
           <p style="color: #ffffff; font-size: 14px; margin-top: 20px;">Folge uns auf <a href="#" style="color: #fff; text-decoration: underline;">Social Media</a></p>
         </td>
-      </tr>
+      </tr> -->
     </table>
     `,
     };
@@ -157,7 +163,7 @@ export default function ContactForm() {
 
   return (
     <section className={`${styles.Main} ${showForm ? styles.FormVisible : ''}`}>
-      <div className={styles.CrossContainer} onClick={hideFormClick}>
+      <div className={styles.CrossContainer} onClick={showFormClick}>
         <div className={styles.Cross}>
           <div></div>
           <div></div>
@@ -165,11 +171,6 @@ export default function ContactForm() {
       </div>
       <form onSubmit={handleSubmit}>
         <h2 className={styles.Title}>Unverbindliche Offerte</h2>
-        <p>
-          Wir werden dein Anliegen vertraulich behandeln und die gewünschte
-          Krankenkasse über dein Interesse an einer unverbindlichen Offerte
-          informieren.
-        </p>
         <div className={styles.FormGroup}>
           <label htmlFor="firstnameeeeeee">
             Vorname<span className={styles.required}>*</span>
@@ -181,12 +182,10 @@ export default function ContactForm() {
             required
           />
         </div>
-
         <div className={styles.FormGroup}>
           <label htmlFor="surname">
             Nachname<span className={styles.required}>*</span>
           </label>
-
           <input
             type="text"
             value={surname}
@@ -250,6 +249,18 @@ export default function ContactForm() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
+        </div>
+        <div className={styles.FormGroupAccept}>
+          <p htmlFor="termsAccepted" className={styles.TermsLabel}>
+            Mit dem Abschicken des Formulars erkläre ich mich mit den{' '}
+            <a
+              href="https://krankenkassen-kompass.ch/nutzungsbestimmungen/"
+              target="_blank"
+            >
+              Nutzungsbestimmungen
+            </a>{' '}
+            einverstanden.
+          </p>
         </div>
         <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen

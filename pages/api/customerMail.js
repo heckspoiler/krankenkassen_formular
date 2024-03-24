@@ -5,19 +5,15 @@ export default async function handler(req, res) {
     const { subject, to, html } = req.body;
 
     let transporter = nodemailer.createTransport({
-
       host: 'www19.servertown.ch',
       port: 465,
       secure: true,
-
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
       },
       tls: {
-
         rejectUnauthorized: false,
-
       },
     });
 

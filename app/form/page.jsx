@@ -70,11 +70,11 @@ export default function Form() {
         } catch (error) {
           if (plz.length !== 4) {
             alert(
-              'Bitte gib eine gültige PLZ ein. Wohlmöglich muss du die Hauptpostleitzahl deiner Gemeinde eingeben oder etwas spezifischer sein. Beispielsweise reicht 8000 nicht, um in Zürich die Region ausfindig zu machen. Analog sollten Sie in Chur anstelle von 7002 lediglich den Wert 7000 eintragen, da gewisse Gemeinden nur eine Prämienregion haben. Falls diese Massnahmen nicht zum Erfolg führen, raten wir an, einen anderen Browser zu nutzen. '
+              'Bitte gib eine gültige PLZ ein. Wohlmöglich muss du die Hauptpostleitzahl deiner Gemeinde eingeben oder etwas spezifischer sein. Beispielsweise reicht 8000 nicht, um in Zürich die Region ausfindig zu machen. Analog sollte in Chur anstelle von 7002 lediglich den Wert 7000 eintragen werden, da gewisse Gemeinden nur eine Prämienregion haben. Falls diese Massnahmen nicht zum Erfolg führen, raten wir an, einen anderen Browser zu nutzen. '
             );
             setWeiter(false);
           } else {
-            alert('etwas falsch gelaufen, bitte versuchen Sie es erneut.');
+            alert('Etwas ist falsch gelaufen, bitte versuchen es erneut.');
             console.error('Error fetching data from Supabase: ', error);
           }
         }

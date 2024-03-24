@@ -5,7 +5,6 @@ import styles from './OfferList.module.css';
 import { useStore } from 'zustand';
 import { datasetStore } from '@/utils/stores/datasetStore';
 import { contactFormStore } from '@/utils/stores/contactStore';
-import { franchiseStore } from '@/utils/stores/franchiseStore';
 import { fetchStore } from '@/utils/stores/fetchStore';
 import { offerStore } from '@/utils/stores/offerStore';
 
@@ -13,17 +12,19 @@ export function OfferList({ isActive, setIsActive }) {
   const dataset = useStore(datasetStore).dataset;
   const { showForm, setShowForm } = useStore(contactFormStore);
   const { fetch, setFetch } = useStore(fetchStore);
-  const {versicherung, praemie, tarif, setOffer} = useStore(offerStore)
+  const { versicherung, praemie, tarif, setOffer } = useStore(offerStore);
 
   const sortedDataset = [...dataset].sort(
     (a, b) => parseFloat(a.praemie) - parseFloat(b.praemie)
   );
 
-
-  const showFormClick = (e) => {
-    e.preventDefault();
-    !showForm ? setShowForm(true) : setShowForm(false);
-    console.log('showForm', showForm);
+  const showFormClick = (offer) => {
+    setShowForm(!showForm);
+    const formattedPraemie = parseFloat(offer.praemie).toFixed(2);
+    let versichererName = offer.versicherer.replace('�KK', 'ÖKK');
+    versichererName = versichererName;
+    setOffer(versichererName, formattedPraemie, offer.tarif);
+    console.log(versicherung, praemie, tarif);
   };
 
   const anotherFranchise = () => {
@@ -55,7 +56,6 @@ export function OfferList({ isActive, setIsActive }) {
                     Tarif für: <strong>{offer.tarif}</strong>
                   </p>
                   <button
-                  
                     className={styles.FranchiseButton}
                     key={offer.tarif}
                     name={offer.tarif}
