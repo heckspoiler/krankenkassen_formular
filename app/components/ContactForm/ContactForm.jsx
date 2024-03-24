@@ -26,6 +26,7 @@ export default function ContactForm() {
   const [isActive, setIsActive] = useState(false);
   const { addMore, setAddMore } = useStore(addMoreStore);
   const plz = useStore(plzStore).plz;
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const {
     surname,
@@ -48,7 +49,10 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(addMore);
+    if (!termsAccepted) {
+      alert('Bitte akzeptiere die Nutzungsbedingungen, um fortzufahren.');
+      return;
+    }
     if (surname === '' || firstname === '' || email === '' || phone === '') {
       alert('Fülle bitte alle Felder aus. ');
     } else {
@@ -170,11 +174,6 @@ export default function ContactForm() {
       </div>
       <form onSubmit={handleSubmit}>
         <h2 className={styles.Title}>Unverbindliche Offerte</h2>
-        <p>
-          Wir werden dein Anliegen vertraulich behandeln und die gewünschte
-          Krankenkasse über dein Interesse an einer unverbindlichen Offerte
-          informieren.
-        </p>
         <div className={styles.FormGroup}>
           <label htmlFor="firstnameeeeeee">
             Vorname<span className={styles.required}>*</span>
@@ -253,6 +252,21 @@ export default function ContactForm() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
+        </div>
+        <div className={styles.FormGroupAccept}>
+          <input
+            type="checkbox"
+            id="termsAccepted"
+            checked={termsAccepted}
+            onChange={(e) => setTermsAccepted(e.target.checked)}
+          />
+          <label htmlFor="termsAccepted" className={styles.TermsLabel}>
+            Mit dem Abschicken des Formulars erkläre ich mich mit den{' '}
+            <a href="/nutzungsbedingungen" target="_blank">
+              Nutzungsbedingungen
+            </a>{' '}
+            einverstanden.
+          </label>
         </div>
         <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen
