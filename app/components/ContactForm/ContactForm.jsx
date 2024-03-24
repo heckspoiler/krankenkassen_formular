@@ -52,13 +52,14 @@ export default function ContactForm() {
     if (!termsAccepted) {
       alert('Bitte akzeptiere die Nutzungsbedingungen, um fortzufahren.');
       return;
-    }
-    if (surname === '' || firstname === '' || email === '' || phone === '') {
-      alert('Fülle bitte alle Felder aus. ');
     } else {
-      setIsActive(true);
-      await sendCustomer();
-      await sendUs();
+      if (surname === '' || firstname === '' || email === '' || phone === '') {
+        alert('Fülle bitte alle Felder aus. ');
+      } else {
+        setIsActive(true);
+        await sendCustomer();
+        await sendUs();
+      }
     }
   };
 
