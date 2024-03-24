@@ -197,12 +197,12 @@
         width: 100vw;
         top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-150%);
         background-color: white;
         display: flex;
         align-items: center;
         justify-content: center;
-        visibility: visible;
+        visibility: hidden;
         padding: 3vw;
         transition: transform 0.8s cubic-bezier(0.39, 0.575, 0.565, 1),
             visibility 0s linear 0.8s;
