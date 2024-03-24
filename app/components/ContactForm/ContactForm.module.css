@@ -72,12 +72,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 1vw;
     padding: 1em 0;
 }
 
 .FormGroup label {
     width: calc(4em + 3vw);
+}
+
+.TermsLabel {
+    width: fit-content;
+    font-weight: 200 !important;
+    font-size: 0.8em;
+}
+
+.TermsLabel a {
+    text-decoration: underline;
 }
 
 

@@ -262,8 +262,11 @@ export default function ContactForm() {
           />
           <label htmlFor="termsAccepted" className={styles.TermsLabel}>
             Mit dem Abschicken des Formulars erkläre ich mich mit den{' '}
-            <a href="/nutzungsbedingungen" target="_blank">
-              Nutzungsbedingungen
+            <a
+              href="https://krankenkassen-kompass.ch/nutzungsbestimmungen/"
+              target="_blank"
+            >
+              Nutzungsbestimmungen
             </a>{' '}
             einverstanden.
           </label>
