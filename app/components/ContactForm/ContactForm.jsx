@@ -49,17 +49,13 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!termsAccepted) {
-      alert('Bitte akzeptiere die Nutzungsbedingungen, um fortzufahren.');
-      return;
+
+    if (surname === '' || firstname === '' || email === '' || phone === '') {
+      alert('Fülle bitte alle Felder aus. ');
     } else {
-      if (surname === '' || firstname === '' || email === '' || phone === '') {
-        alert('Fülle bitte alle Felder aus. ');
-      } else {
-        setIsActive(true);
-        await sendCustomer();
-        await sendUs();
-      }
+      setIsActive(true);
+      await sendCustomer();
+      await sendUs();
     }
   };
 
@@ -255,13 +251,7 @@ export default function ContactForm() {
           />
         </div>
         <div className={styles.FormGroupAccept}>
-          <input
-            type="checkbox"
-            id="termsAccepted"
-            checked={termsAccepted}
-            onChange={(e) => setTermsAccepted(e.target.checked)}
-          />
-          <label htmlFor="termsAccepted" className={styles.TermsLabel}>
+          <p htmlFor="termsAccepted" className={styles.TermsLabel}>
             Mit dem Abschicken des Formulars erkläre ich mich mit den{' '}
             <a
               href="https://krankenkassen-kompass.ch/nutzungsbestimmungen/"
@@ -270,7 +260,7 @@ export default function ContactForm() {
               Nutzungsbestimmungen
             </a>{' '}
             einverstanden.
-          </label>
+          </p>
         </div>
         <button type="submit" className={styles.Button} onClick={handleSubmit}>
           Offerte einholen
